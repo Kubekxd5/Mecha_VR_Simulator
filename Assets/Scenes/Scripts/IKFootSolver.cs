@@ -9,27 +9,18 @@ public class IKFootSolver : MonoBehaviour
 	[SerializeField] private Transform bodyTransform;
     [SerializeField] private Transform headTransform;
     [SerializeField] private Leg[] legs;
-    public Leg[] Legs { get { return legs; } }
 
     [Header("Leg IK Settings")]
     [SerializeField] private float raycastDistance = 10f;
     [SerializeField] private LayerMask groundMask;
+    [SerializeField] private bool useCurrentVelocityForLegs, resetAngleOnPause;
 
-    [Header("Forward Movement")]
-    [SerializeField] private float moveSpeed = 2f;
-    [SerializeField] private float turnSpeed = 100f;
-    [SerializeField] private float throttleSpeed = 5f;
-
-    [Header("Height Movement")]
-    [SerializeField] private float desiredBodyHeight = 2.5f;
+	[Header("Automated Height Adjustment")]
+    [SerializeField] private float initialBodyHeight = 0f;
     [SerializeField] private float heightAdjustSpeed = 5f;
-    [Space]
     [SerializeField] private float feetHeightFixAdjustement = 0f;
     [SerializeField] private float safetyThreshold = 1.2f;
     [SerializeField] private float safetyRaiseHeight = 2.0f;
-    public float DesiredBodyHeight { get; set; }
-	public float CurrentForwardMovement {  get; set; }
-    public float LegSpeed { get; set; }
 
     [Header("Body Side-to-side")]
 	//[SerializeField] [Range(0f,2f)] private float bodyTiltIntensity  = 1.5f;
@@ -42,25 +33,24 @@ public class IKFootSolver : MonoBehaviour
 	[SerializeField] private float bodyBobAmount = 0.1f;
 	[SerializeField] private float bodyBobSpeed = 10f;
 
-    private enum RotationAxis
-    {
-        X, Y, Z
-    }
+	public float DesiredBodyHeight { get; set; }
+    public float LeftThrottle { get; set; }
+    public float RightThrottle { get; set; }
+    public float MoveSpeed { get; set; }
+    public float CurrentForwardMovement { get; private set; }
+    public bool CanMove { get; private set; } = true;
 
     private Vector3 torsoPosition;
-
     private Quaternion targetBodyRotation = Quaternion.identity;
     private Quaternion currentBodyRotation = Quaternion.identity;
-
-    private Vector3 targetBodyOffset;
-    private Vector3 currentBodyOffset;
-    private Vector3 bobVelocity, bodyVelocity;
-
+    private Vector3 targetBodyOffset, currentBodyOffset, bobVelocity, bodyVelocity;
+    private float legSpeed;
 
     void Start()
     {
 		torsoPosition = hipTransform.position;
-				
+		DesiredBodyHeight = initialBodyHeight;
+		
         foreach (var leg in legs)
         {
             if (leg.ikTarget != null)
@@ -70,15 +60,67 @@ public class IKFootSolver : MonoBehaviour
                 leg.oldPosition = leg.ikTarget.position;
             }
             leg.lerp = 1;
+            leg.defaultAngle = leg.angle;
         }
     }
 
     void Update()
     {
-        AutomatedHeightAdjustment();
+		torsoPosition = hipTransform.position;
+
+        bool allLegsGrounded = true;
+        foreach (var leg in legs)
+        {
+            if (leg.IsMoving())
+            {
+                allLegsGrounded = false;
+                break;
+            }
+        }
+        CanMove = allLegsGrounded;
+
+        ProcessMovementInputs();
+		AutomatedHeightAdjustment();
         UpdateLegsIK();
-		ApplyBodyTilt();
-		ApplyBodyBob();
+        ApplyBodyTilt();
+        ApplyBodyBob();
+    }
+	
+	private void ProcessMovementInputs()
+    {
+        foreach (var leg in legs)
+        {
+            float baseAngle = Mathf.Abs(leg.defaultAngle);
+            float currentInput = 0f;
+
+            switch (leg.side)
+            {
+                case Leg.LegSide.Left:
+                    currentInput = LeftThrottle;
+                    break;
+                case Leg.LegSide.Right:
+                    currentInput = RightThrottle;
+                    break;
+                case Leg.LegSide.Center:
+                    currentInput = (LeftThrottle + RightThrottle) / 2;
+                    break;
+            }
+
+            if (Mathf.Abs(currentInput) > 0.01f)
+            {
+                leg.angle = baseAngle * Mathf.Sign(currentInput) * -1f;
+            }
+            else if (resetAngleOnPause) leg.angle = 0;
+        }
+
+        bool isMovingForward = LeftThrottle > 0 || RightThrottle > 0;
+        float forwardMovement = isMovingForward ? (LeftThrottle + RightThrottle) / 2f : (LeftThrottle + RightThrottle) / 3f;
+        float turnMovement = (RightThrottle - LeftThrottle);
+
+        CurrentForwardMovement = forwardMovement;
+
+        float currentVelocity = Mathf.Abs(forwardMovement) + Mathf.Abs(turnMovement);
+        legSpeed = useCurrentVelocityForLegs ? MoveSpeed * 1.75f * currentVelocity : MoveSpeed * 1.75f;
     }
 
     private void AutomatedHeightAdjustment()
@@ -184,7 +226,7 @@ public class IKFootSolver : MonoBehaviour
                 footPos.y += Mathf.Sin(leg.lerp * Mathf.PI) * leg.stepHeight;
 
                 leg.currentPosition = footPos;
-                leg.lerp += Time.deltaTime * LegSpeed;
+                leg.lerp += Time.deltaTime * legSpeed;
             }
             else
             {
@@ -250,6 +292,7 @@ public class Leg
     [HideInInspector] public Vector3 oldPosition;
     [HideInInspector] public Quaternion stepLeanRotation;
     [HideInInspector] public float lerp;
+    [HideInInspector] public float defaultAngle;
 
     public bool IsMoving()
     {

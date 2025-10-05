@@ -187,13 +187,14 @@ GameObject:
   - component: {fileID: 2760415717537667736}
   - component: {fileID: 422768168553975031}
   - component: {fileID: 2027841496009319966}
+  - component: {fileID: 8201140691537671262}
   m_Layer: 0
   m_Name: Tripod 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1121181680384172655
 Transform:
   m_ObjectHideFlags: 0
@@ -271,33 +272,35 @@ MonoBehaviour:
     ikTarget: {fileID: 3521472041056827526}
     otherFootIndex: 1
     footSpacing: {x: -0.96, y: 0, z: 0}
-    stepDistance: 0.4
+    stepDistance: 0.45
     stepHeight: 0.3
-    angle: 15
+    angle: 13
     targetOffset: {x: 0, y: 0, z: 0}
     currentPosition: {x: 1.9222167, y: 3.1743634, z: 23.330168}
     newPosition: {x: 1.918786, y: 3.1670575, z: 23.33029}
     oldPosition: {x: 1.918786, y: 3.1670575, z: 23.33029}
     stepLeanRotation: {x: 0, y: 0, z: 0, w: 0}
     lerp: 1.0010742
+    defaultAngle: 0
   - side: 1
     ikTarget: {fileID: 6176856935727606748}
-    otherFootIndex: 2
+    otherFootIndex: 0
     footSpacing: {x: 0.96, y: 0, z: 0}
-    stepDistance: 0.3
+    stepDistance: 0.45
     stepHeight: 0.3
-    angle: 15
+    angle: 13
     targetOffset: {x: 0, y: 0, z: 0}
     currentPosition: {x: 1.5661832, y: 2.4142811, z: 25.234446}
     newPosition: {x: 1.5659087, y: 2.4138553, z: 25.234447}
     oldPosition: {x: 1.5659087, y: 2.4138553, z: 25.234447}
     stepLeanRotation: {x: 0, y: 0, z: 0, w: 0}
     lerp: 1.0096396
+    defaultAngle: 0
   - side: 2
     ikTarget: {fileID: 3681037265845070026}
-    otherFootIndex: 0
+    otherFootIndex: 1
     footSpacing: {x: 0, y: 0, z: 1.81}
-    stepDistance: 0.5
+    stepDistance: 0.6
     stepHeight: 0.2
     angle: 20
     targetOffset: {x: 0, y: 0, z: 0}
@@ -306,26 +309,18 @@ MonoBehaviour:
     oldPosition: {x: -0.015201926, y: 3.1864038, z: 24.189365}
     stepLeanRotation: {x: 0, y: 0, z: 0, w: 0}
     lerp: 1.0038658
-  onlyMoveWhenBothGrounded: 1
+    defaultAngle: 0
   raycastDistance: 10
   groundMask:
     serializedVersion: 2
     m_Bits: 1
-  moveSpeed: 1.5
-  turnSpeed: 5
-  throttleSpeed: 5
-  desiredBodyHeight: -0.3
-  maxHeight: -0.1
-  minHeight: -0.3
+  useCurrentVelocityForLegs: 0
+  resetAngleOnPause: 1
+  initialBodyHeight: 0
   heightAdjustSpeed: 1
   feetHeightFixAdjustement: 1.3
   safetyThreshold: -0.3
   safetyRaiseHeight: 0.5
-  desiredRotation: 0
-  maxYawAngle: 70
-  headRotationSmoothTime: 2
-  headRotationSpeed: 50
-  rotationAxis: 1
   tiltAngleToIntensity:
     serializedVersion: 2
     m_Curve:
@@ -387,6 +382,34 @@ MonoBehaviour:
   bodyPivot: {fileID: 4740167749193954767}
   bodyBobAmount: -0.001
   bodyBobSpeed: 5
+--- !u!114 &8201140691537671262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 343659372159252693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e9d219324d4d154fb73994593354a20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ikFootSolver: {fileID: 2027841496009319966}
+  hipTransform: {fileID: 6309608146539350107}
+  headTransform: {fileID: 3528795468078987693}
+  onlyMoveWhenBothGrounded: 1
+  moveSpeed: 0.75
+  turnSpeed: 7.5
+  throttleSpeed: 3
+  desiredBodyHeight: 0
+  maxHeight: -0.05
+  minHeight: -0.4
+  heightInputSpeed: 1
+  desiredRotation: 0
+  maxYawAngle: 90
+  headRotationSmoothTime: 4
+  headRotationSpeed: 40
+  rotationAxis: 1
 --- !u!1 &1614129205469347403
 GameObject:
   m_ObjectHideFlags: 0
@@ -1416,7 +1439,7 @@ Camera:
     height: 1
   near clip plane: 0.03
   far clip plane: 1000
-  field of view: 75
+  field of view: 85
   orthographic: 0
   orthographic size: 5
   m_Depth: -1

@@ -11032,6 +11032,7 @@ GameObject:
   - component: {fileID: 950065622412315166}
   - component: {fileID: 1088269646761833166}
   - component: {fileID: 8004292536056893970}
+  - component: {fileID: 5051681773884422411}
   m_Layer: 0
   m_Name: MyTitan2
   m_TagString: Player
@@ -11118,46 +11119,37 @@ MonoBehaviour:
     footSpacing: {x: 0.65, y: 0, z: 0}
     stepDistance: 0.7
     stepHeight: 0.4
-    angle: 20
+    angle: 10
     targetOffset: {x: 0, y: 0.13, z: 0}
     currentPosition: {x: -3.5082166, y: 2.6333427, z: 23.520567}
     newPosition: {x: -3.5082085, y: 2.633325, z: 23.52056}
     oldPosition: {x: -3.5082085, y: 2.633325, z: 23.52056}
     stepLeanRotation: {x: 0, y: 0, z: 0, w: 0}
     lerp: 1.0050234
+    defaultAngle: 0
   - side: 0
     ikTarget: {fileID: 7652410272967933065}
     otherFootIndex: 0
     footSpacing: {x: -0.65, y: 0, z: 0}
     stepDistance: 0.7
     stepHeight: 0.4
-    angle: 20
+    angle: 10
     targetOffset: {x: 0, y: 0.13, z: 0}
     currentPosition: {x: -2.5116346, y: 2.9915776, z: 23.632088}
     newPosition: {x: -2.5114698, y: 2.9897017, z: 23.631096}
     oldPosition: {x: -2.5114698, y: 2.9897017, z: 23.631096}
     stepLeanRotation: {x: 0, y: 0, z: 0, w: 0}
     lerp: 1.0028555
-  onlyMoveWhenBothGrounded: 1
+    defaultAngle: 0
   raycastDistance: 2
   groundMask:
     serializedVersion: 2
     m_Bits: 1
-  moveSpeed: 1
-  turnSpeed: 10
-  throttleSpeed: 1
-  desiredBodyHeight: -0.16
-  maxHeight: -0.16
-  minHeight: -0.5
+  initialBodyHeight: 0
   heightAdjustSpeed: 1
   feetHeightFixAdjustement: 0.2
   safetyThreshold: -0.51
   safetyRaiseHeight: 0.15
-  desiredRotation: 0
-  maxYawAngle: 40
-  headRotationSmoothTime: 2
-  headRotationSpeed: 50
-  rotationAxis: 1
   tiltAngleToIntensity:
     serializedVersion: 2
     m_Curve:
@@ -11238,6 +11230,34 @@ MonoBehaviour:
   - {fileID: 8126671132882973805}
   - {fileID: 2477030728757794811}
   interval: 0
+--- !u!114 &5051681773884422411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5076780571292011115}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e9d219324d4d154fb73994593354a20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ikFootSolver: {fileID: 1088269646761833166}
+  hipTransform: {fileID: 1522373102084668133}
+  headTransform: {fileID: 6492661886231752334}
+  onlyMoveWhenBothGrounded: 1
+  moveSpeed: 0.75
+  turnSpeed: 10
+  throttleSpeed: 3
+  desiredBodyHeight: 0
+  maxHeight: -0.01
+  minHeight: -0.5
+  heightInputSpeed: 2
+  desiredRotation: 0
+  maxYawAngle: 45
+  headRotationSmoothTime: 5
+  headRotationSpeed: 30
+  rotationAxis: 1
 --- !u!1 &5359183507067085122
 GameObject:
   m_ObjectHideFlags: 0

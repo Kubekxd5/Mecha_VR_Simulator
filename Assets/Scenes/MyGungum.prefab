@@ -623,6 +623,7 @@ GameObject:
   - component: {fileID: 3427370449947372704}
   - component: {fileID: 7783952426043207784}
   - component: {fileID: 3088947759417405896}
+  - component: {fileID: 6439744556497284743}
   m_Layer: 0
   m_Name: MyGungum
   m_TagString: Untagged
@@ -711,11 +712,12 @@ MonoBehaviour:
     stepHeight: 0.4
     angle: 10
     targetOffset: {x: 0, y: 0, z: 0}
-    currentPosition: {x: -31.574394, y: 0.018055275, z: 33.333633}
-    newPosition: {x: -31.575043, y: -7.403193e-16, z: 33.341015}
-    oldPosition: {x: -31.575043, y: -7.403193e-16, z: 33.341015}
+    currentPosition: {x: -21.598003, y: 0.04141296, z: -0.01411354}
+    newPosition: {x: -21.598003, y: 0.04141296, z: -0.01411354}
+    oldPosition: {x: -21.598003, y: 0.04141296, z: -0.01411354}
     stepLeanRotation: {x: 0, y: 0, z: 0, w: 0}
-    lerp: 1.005018
+    lerp: 1
+    defaultAngle: 10
   - side: 0
     ikTarget: {fileID: 3931029898880808087}
     otherFootIndex: 0
@@ -724,31 +726,21 @@ MonoBehaviour:
     stepHeight: 0.4
     angle: 10
     targetOffset: {x: 0, y: 0, z: 0}
-    currentPosition: {x: -32.151707, y: 0.015755644, z: 33.049404}
-    newPosition: {x: -32.152332, y: -7.3400196e-16, z: 33.056507}
-    oldPosition: {x: -32.152332, y: -7.3400196e-16, z: 33.056507}
+    currentPosition: {x: -22.102, y: 0.041442703, z: -0.017330702}
+    newPosition: {x: -22.102, y: 0.041442703, z: -0.017330702}
+    oldPosition: {x: -22.102, y: 0.041442703, z: -0.017330702}
     stepLeanRotation: {x: 0, y: 0, z: 0, w: 0}
-    lerp: 1.002952
-  onlyMoveWhenBothGrounded: 0
+    lerp: 1
+    defaultAngle: 10
   raycastDistance: 10
   groundMask:
     serializedVersion: 2
     m_Bits: 1
-  moveSpeed: 1
-  turnSpeed: 10
-  throttleSpeed: 2
-  desiredBodyHeight: -0.05
-  maxHeight: -0.05
-  minHeight: -0.45
+  initialBodyHeight: 0
   heightAdjustSpeed: 2
   feetHeightFixAdjustement: 0
-  safetyThreshold: -0.5
+  safetyThreshold: -0.55
   safetyRaiseHeight: 0.2
-  desiredRotation: 11.563563
-  maxYawAngle: 90
-  headRotationSmoothTime: 10
-  headRotationSpeed: 80
-  rotationAxis: 1
   tiltAngleToIntensity:
     serializedVersion: 2
     m_Curve:
@@ -810,6 +802,34 @@ MonoBehaviour:
   bodyPivot: {fileID: 3633866357475533337}
   bodyBobAmount: -0.001
   bodyBobSpeed: 5
+--- !u!114 &6439744556497284743
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5406540540612959193}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e9d219324d4d154fb73994593354a20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ikFootSolver: {fileID: 3088947759417405896}
+  hipTransform: {fileID: 8370289770538562094}
+  headTransform: {fileID: 1344742640319687406}
+  onlyMoveWhenBothGrounded: 0
+  moveSpeed: 1.5
+  turnSpeed: 30
+  throttleSpeed: 3
+  desiredBodyHeight: -0.1
+  maxHeight: -0.1
+  minHeight: -0.5
+  heightInputSpeed: 2
+  desiredRotation: 0
+  maxYawAngle: 110
+  headRotationSmoothTime: 5
+  headRotationSpeed: 60
+  rotationAxis: 1
 --- !u!1 &5452353550442128326
 GameObject:
   m_ObjectHideFlags: 0
