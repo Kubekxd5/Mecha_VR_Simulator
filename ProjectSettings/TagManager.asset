@@ -3,7 +3,10 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 3
-  tags: []
+  tags:
+  - Enemy
+  - CockpitSlot
+  - WeaponSlot
   layers:
   - Default
   - TransparentFX
@@ -11,21 +14,21 @@ TagManager:
   - 
   - Water
   - UI
-  - Mech
+  - Player
+  - 
+  - Enemy
+  - 
+  - 
+  - 
+  - Player_Cockpit
+  - 
+  - Mech_Head
+  - Mech_Body
   - 
   - 
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Obstacle
   - 
   - 
   - 

@@ -1,0 +1,16 @@
+.MyLabelStyle {
+    justify-content: center;
+    align-self: center;
+    align-items: center;
+    align-content: center;
+    -unity-text-align: middle-center;
+    width: 100%;
+    height: 94%;
+    font-size: 40px;
+    -unity-font-definition: url("project://database/Assets/TextMesh%20Pro/Fonts/LiberationSans.ttf?fileID=12800000&guid=e3265ab4bf004d28a9537516768c1c75&type=3#LiberationSans");
+    -unity-font-style: bold;
+    color: rgb(0, 226, 205);
+    -unity-text-outline-width: 1px;
+    -unity-text-outline-color: rgb(13, 239, 204);
+    text-shadow: 1px 1px 10px rgb(0, 161, 137);
+}
