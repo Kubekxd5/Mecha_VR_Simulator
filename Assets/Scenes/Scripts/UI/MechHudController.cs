@@ -30,36 +30,49 @@ public class MechHudController : MonoBehaviour
 
     [SerializeField] private bool isInitialized = false;
 
+    private void Awake()
+    {
+        if (uiDocument == null)
+        {
+            uiDocument = GetComponent<UIDocument>();
+        }
+    }
+
     private void Start()
     {
-        playerTransform = this.transform;
+        StartLogic();
     }
-    /*void OnEnable()
+
+    private void StartLogic()
     {
         if (mainCamera == null)
         {
-            Debug.LogError("MechHudController: No camera");
+            Debug.LogError("MechHudController: Brak przypisanej kamery (mainCamera)!", this.gameObject);
             return;
         }
 
         if (uiDocument == null)
         {
-            Debug.LogError("MechHudController: UIDocument component not found");
+            Debug.LogError("MechHudController: Nie znaleziono komponentu UIDocument!", this.gameObject);
             return;
         }
 
         var root = uiDocument.rootVisualElement;
+        if (root == null)
+        {
+            Debug.LogError("MechHudController: rootVisualElement jest null. Upewnij siê, ¿e UIDocument ma przypisany poprawny plik UXML.", this.gameObject);
+            return;
+        }
 
         distanceCounterLabel = root.Q<Label>("CrosshairDistanceCounter");
         compassLabel = root.Q<Label>("CompassText");
         speedLabel = root.Q<Label>("CurrentSpeedLabel");
 
-        if (distanceCounterLabel == null) Debug.LogError("MechHudController: Could not find a Label named 'CrosshairDistanceCounter' in UI");
-        if (compassLabel == null) Debug.LogError("MechHudController: Could not find a Label named 'Compass' in UI");
-        if (speedLabel == null) Debug.LogError("MechHudController: Could not find a Label named 'CurrentSpeedLabel' in UI");
+        if (distanceCounterLabel == null) Debug.LogError("MechHudController: Nie znaleziono etykiety 'CrosshairDistanceCounter' w UI!");
+        if (compassLabel == null) Debug.LogError("MechHudController: Nie znaleziono etykiety 'CompassText' w UI!");
+        if (speedLabel == null) Debug.LogError("MechHudController: Nie znaleziono etykiety 'CurrentSpeedLabel' w UI!");
+    }
 
-        lastPosition = playerTransform.position;
-    }*/
 
     public void Initialize(Transform mechaTransform)
     {
@@ -74,13 +87,18 @@ public class MechHudController : MonoBehaviour
         this.playerTransform = mechaTransform;
         this.mechaRuntimeData = mechaTransform.GetComponent<MechaRuntimeData>();
 
-        // UpdateHealthUI(mechaRuntimeData.CurrentHealth);
-
         isInitialized = true;
     }
 
     void Update()
     {
+        if (!isInitialized || playerTransform == null) return;
+
+        if (lastPosition == Vector3.zero)
+        {
+            lastPosition = playerTransform.position;
+        }
+
         UpdateDistanceCounter();
         UpdateCompass();
         UpdateSpeedometer();
