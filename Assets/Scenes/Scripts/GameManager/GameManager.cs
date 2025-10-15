@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private MechaSO selectedMecha;
     [SerializeField] private Transform playerSpawnPoint;
     [SerializeField] private GameObject spawnShipPrefab;
+    [SerializeField] private GameObject vrPlayerPrefab;
 
     [Header("Runtime References")]
     [SerializeField] private GameObject spawnedMechaInstance;
@@ -28,10 +29,15 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        StartPlayerSpawnSequence();
+        SpawnPlayerInMenu();
     }
 
-    public void StartPlayerSpawnSequence()
+    public void SpawnPlayerInMenu()
+    {
+        Instantiate(vrPlayerPrefab, playerSpawnPoint.position, playerSpawnPoint.rotation);
+    }
+
+    public void StartMechaSpawningSequence()
     {
         if (selectedMecha == null || playerSpawnPoint == null || spawnShipPrefab == null)
         {

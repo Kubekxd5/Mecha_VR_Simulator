@@ -4,6 +4,8 @@ public class MechaRuntimeData : MonoBehaviour
 {
     [Header("Mecha Data")]
     [SerializeField] private MechaSO mechaData;
+    [SerializeField] private Material selectedMaterial;
+    [SerializeField] private Vector2 materialOffsets;
 
     [Header("Runtime Stats")]
     private float currentHealth;

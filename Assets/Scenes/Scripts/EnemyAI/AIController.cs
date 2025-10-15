@@ -210,11 +210,15 @@ public class AIController : MonoBehaviour
 
         float yawAngle = Vector3.SignedAngle(transform.forward, directionOnBodyPlane, transform.up);
         float pitchAngle = Vector3.SignedAngle(directionOnBodyPlane, worldDirectionToTarget, transform.right);
+        float rollAngle = Vector3.SignedAngle(Vector3.up, transform.up, transform.forward);
 
         float finalYaw = headRotation.rotateOnY ? Mathf.Clamp(yawAngle, -headRotation.leftLimit, headRotation.rightLimit) : 0f;
         float finalPitch = headRotation.rotateOnX ? Mathf.Clamp(pitchAngle, -headRotation.upLimit, headRotation.downLimit) : 0f;
+        float finalRoll = headRotation.rotateOnZ ? Mathf.Clamp(rollAngle, -headRotation.zLeftLimit, headRotation.zRightLimit) : 0f;
 
-        Quaternion finalLocalRotation = Quaternion.Euler(finalPitch, finalYaw, 0f);
+
+
+        Quaternion finalLocalRotation = Quaternion.Euler(finalPitch, finalYaw, finalRoll);
 
         headTransform.localRotation = Quaternion.Slerp(
         headTransform.localRotation,
@@ -259,12 +263,16 @@ public struct HeadRotationSettings
 {
     public bool rotateOnX;
     public bool rotateOnY;
+    public bool rotateOnZ;
+
 
     [Header("Rotation Limits")]
     [Range(0, 180)] public float upLimit;
     [Range(0, 180)] public float downLimit;
     [Range(0, 180)] public float leftLimit;
     [Range(0, 180)] public float rightLimit;
+    [Range(0, 180)] public float zLeftLimit;
+    [Range(0, 180)] public float zRightLimit;
 
     [Header("Rotation Speed")]
     public float rotationSpeed;
