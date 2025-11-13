@@ -1,5 +1,8 @@
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -7,16 +10,18 @@ public class GameManager : MonoBehaviour
 
     [Header("Player & Mecha Settings")]
     [SerializeField] private MechaSO selectedMecha;
-    [SerializeField] private Transform playerSpawnPoint;
+    [SerializeField] private GameObject vrPlayerPrefab_MainMenu;
+    [SerializeField] private GameObject vrPlayerPrefab_GameScene;
     [SerializeField] private GameObject spawnShipPrefab;
-    [SerializeField] private GameObject vrPlayerPrefab;
 
-    [Header("Runtime References")]
-    [SerializeField] private GameObject spawnedMechaInstance;
+    [Header("Scene Settings")]
+    [SerializeField] private string menuSceneName = "MainMenu";
+    [SerializeField] private string gameSceneName = "GameScene";
+
+    private static MechaCustomizationData pendingCustomizationData;
 
     private void Awake()
     {
-        // Implementacja Singletona
         if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
@@ -24,91 +29,192 @@ public class GameManager : MonoBehaviour
         else
         {
             Instance = this;
+            DontDestroyOnLoad(gameObject);
         }
     }
 
-    private void Start()
+    private void OnEnable()
     {
-        SpawnPlayerInMenu();
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
-    public void SpawnPlayerInMenu()
+    private void OnDisable()
     {
-        Instantiate(vrPlayerPrefab, playerSpawnPoint.position, playerSpawnPoint.rotation);
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
-    public void StartMechaSpawningSequence()
+    public void StartGame(MechaRuntimeData customizationSource)
     {
-        if (selectedMecha == null || playerSpawnPoint == null || spawnShipPrefab == null)
+        pendingCustomizationData = new MechaCustomizationData
         {
-            Debug.LogError("Nie mo¿na rozpocz¹æ sekwencji spawnowania! Brakuje referencji w GameManager.");
-            return;
-        }
+            mechaSO = customizationSource.MechaData,
+            materialIndex = customizationSource.SelectedMaterialIndex,
+            materialOffsets = customizationSource.MaterialOffsets,
+            equippedWeapons = new List<WeaponSO>(customizationSource.EquippedWeapons)
+        };
 
-        StartCoroutine(SpawnSequenceCoroutine());
+        SceneManager.LoadScene(gameSceneName);
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.name == menuSceneName)
+        {
+            SpawnPlayerInMenu();
+        }
+        else if (scene.name == gameSceneName)
+        {
+            StartCoroutine(SpawnSequenceCoroutine());
+        }
+    }
+
+    private void SpawnPlayerInMenu()
+    {
+        Transform spawnPoint = GameObject.FindWithTag("PlayerSpawn").transform;
+        if (spawnPoint)
+        {
+            Instantiate(vrPlayerPrefab_MainMenu, spawnPoint.position, spawnPoint.rotation);
+        }
     }
 
     private IEnumerator SpawnSequenceCoroutine()
     {
-        spawnedMechaInstance = Instantiate(selectedMecha.mechPrefab, playerSpawnPoint.position, playerSpawnPoint.rotation);
+        if (pendingCustomizationData == null || pendingCustomizationData.mechaSO == null)
+        {
+            Debug.LogError("No customized data. Returning to menu.");
+            SceneManager.LoadScene(menuSceneName);
+            yield break;
+        }
+
+        Transform spawnPoint = GameObject.FindWithTag("PlayerSpawn").transform;
+
+        if (!spawnPoint || !spawnShipPrefab)
+        {
+            Debug.LogError("No spawnpoint or spaceship prefab in GameManager", this.gameObject);
+            yield break;
+        }
+
+        GameObject spawnedMechaInstance = Instantiate(pendingCustomizationData.mechaSO.mechPrefab, spawnPoint.position, spawnPoint.rotation);
         spawnedMechaInstance.SetActive(false);
 
         MechaRuntimeData runtimeData = spawnedMechaInstance.AddComponent<MechaRuntimeData>();
-        runtimeData.Initialize(selectedMecha);
-
-        MechHudController hudController = spawnedMechaInstance.GetComponentInChildren<MechHudController>();
-        if (hudController != null)
+        runtimeData.Initialize(pendingCustomizationData.mechaSO);
+        runtimeData.SetCustomization(pendingCustomizationData.materialIndex, pendingCustomizationData.materialOffsets);
+        foreach (var weapon in pendingCustomizationData.equippedWeapons)
         {
-            hudController.Initialize(spawnedMechaInstance.transform);
+            runtimeData.AddWeapon(weapon);
         }
 
-        EquipDefaultWeapons(spawnedMechaInstance);
+        EquipWeapons(spawnedMechaInstance, runtimeData.EquippedWeapons);
 
-        Vector3 shipStartPosition = playerSpawnPoint.position - (playerSpawnPoint.forward * 1000f) + (Vector3.up * 20f);
-        Quaternion shipStartRotation = Quaternion.LookRotation(playerSpawnPoint.forward);
+        Transform cockpitSlot = spawnedMechaInstance
+            .GetComponentsInChildren<Transform>(true)
+            .FirstOrDefault(t => t.CompareTag("CockpitSlot"));
 
-        GameObject shipInstance = Instantiate(spawnShipPrefab, shipStartPosition, shipStartRotation);
-        SpawnShipController shipController = shipInstance.GetComponent<SpawnShipController>();
-
-        if (shipController != null && shipController.playerHolder != null)
+        if (cockpitSlot == null)
         {
-            spawnedMechaInstance.SetActive(true);
-            shipController.Initialize(spawnedMechaInstance.transform, playerSpawnPoint);
+            Debug.LogError($"Mecha Prefab '{spawnedMechaInstance.name}' There is no 'CockpitSlot'!", spawnedMechaInstance);
+            Destroy(spawnedMechaInstance);
+            yield break;
+        }
+
+        MechaCockpit cockpitData = pendingCustomizationData.mechaSO.mechaCockpit;
+        GameObject cockpitInstance = Instantiate(cockpitData.cockpitPrefab, cockpitSlot);
+        cockpitInstance.transform.localPosition = cockpitData.cockpitOffset;
+        cockpitInstance.transform.localRotation = Quaternion.identity;
+
+        Camera rendererCamera = cockpitInstance.transform
+            .GetComponentsInChildren<Camera>(true)
+            .FirstOrDefault(c => c.CompareTag("RendererCamera"));
+
+        Transform screenCameraPoint = spawnedMechaInstance
+            .GetComponentsInChildren<Transform>(true)
+            .FirstOrDefault(t => t.name == "ScreenCameraPoint");
+
+        if (rendererCamera != null && screenCameraPoint != null)
+        {
+            rendererCamera.transform.SetParent(screenCameraPoint);
+            rendererCamera.transform.localPosition = Vector3.zero;
+            rendererCamera.transform.localRotation = Quaternion.identity;
         }
         else
         {
-            Debug.LogError("Nie znaleziono obiektu 'playerHolder' w prefabie statku! Mech zostanie aktywowany w punkcie zrzutu.");
-            spawnedMechaInstance.SetActive(true);
+            Debug.LogWarning("RendererCamera or ScreenCameraPoint not found in Mecha hierarchy.");
         }
 
-        if (selectedMecha.mechaAudio.spawnSound != null)
+        if (vrPlayerPrefab_GameScene != null)
         {
-            AudioSource.PlayClipAtPoint(selectedMecha.mechaAudio.spawnSound, spawnedMechaInstance.transform.position);
+            GameObject playerInstance = Instantiate(vrPlayerPrefab_GameScene, cockpitInstance.transform);
+            playerInstance.transform.localPosition = new Vector3(0.013f, 0.176f, 0.193f);
+            playerInstance.transform.localRotation = Quaternion.identity;
         }
+
+        spawnedMechaInstance.GetComponent<MechaControls>().InitializeControls();
+
+        Vector3 shipStartPosition = spawnPoint.position - (spawnPoint.forward * 1000f) + (Vector3.up * 50f);
+        GameObject shipInstance = Instantiate(spawnShipPrefab, shipStartPosition, Quaternion.LookRotation(spawnPoint.forward));
+
+        SpawnShipController shipController = shipInstance.GetComponent<SpawnShipController>();
+        if (shipController != null)
+        {
+            shipController.Initialize(spawnedMechaInstance.transform, spawnPoint);
+        }
+        else
+        {
+            Debug.LogError("Spaceship prefab has no SpawnShipController!", shipInstance);
+        }
+
+        spawnedMechaInstance.SetActive(true);
 
         yield return null;
     }
 
-    private void EquipDefaultWeapons(GameObject mechaInstance)
+    private void EquipWeapons(GameObject mechaInstance, List<WeaponSO> weapons)
     {
-        MechaWeaponHardpoint[] hardpoints = mechaInstance.GetComponentsInChildren<MechaWeaponHardpoint>();
-        GameObject[] defaultWeapons = selectedMecha.mechaLoadout.defaultWeapon;
-
-        if (defaultWeapons.Length == 0 || hardpoints.Length == 0)
+        MechaRuntimeData runtimeData = mechaInstance.GetComponent<MechaRuntimeData>();
+        if (runtimeData == null)
         {
-            Debug.LogWarning($"Mech {selectedMecha.mechName} nie ma zdefiniowanego domyœlnego uzbrojenia lub punktów monta¿owych.");
+            Debug.LogError("EquipWeapons: No MechaRuntimeData found on spawned Mecha!");
             return;
         }
 
-        Debug.Log($"Wyposa¿anie mecha {selectedMecha.mechName} w {defaultWeapons.Length} broni.");
-
-        for (int i = 0; i < hardpoints.Length; i++)
+        WeaponSlot[] allSlots = mechaInstance.GetComponentsInChildren<WeaponSlot>(true);
+        if (allSlots.Length == 0)
         {
-            if (i < defaultWeapons.Length && defaultWeapons[i] != null)
+            Debug.LogWarning($"No WeaponSlots found on {mechaInstance.name}!");
+            return;
+        }
+
+        foreach (var weapon in weapons)
+        {
+            WeaponSlot targetSlot = null;
+
+            foreach (var slot in allSlots)
             {
-                GameObject weaponPrefab = defaultWeapons[i];
-                Instantiate(weaponPrefab, hardpoints[i].MountPoint.position, hardpoints[i].MountPoint.rotation, hardpoints[i].MountPoint);
+                if (!slot.IsOccupied && slot.slotType == weapon.weaponClass)
+                {
+                    targetSlot = slot;
+                    break;
+                }
+            }
+            if (targetSlot != null)
+            {
+                targetSlot.MountWeapon(weapon);
+                runtimeData.AddWeapon(weapon);
+                Debug.Log($"Equipped {weapon.WeaponName} in slot #{targetSlot.slotIndex} ({targetSlot.slotType})");
+            }
+            else
+            {
+                Debug.LogWarning($"No free matching slot found for {weapon.WeaponName} ({weapon.weaponClass}) on {mechaInstance.name}");
             }
         }
     }
+}
+
+public class MechaCustomizationData
+{
+    public MechaSO mechaSO;
+    public int materialIndex;
+    public Vector2 materialOffsets;
+    public List<WeaponSO> equippedWeapons;
 }

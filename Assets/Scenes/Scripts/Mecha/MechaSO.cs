@@ -45,7 +45,7 @@ public struct MechaLoadout
 [System.Serializable]
 public struct MechaVisuals
 {
-    [SerializeField] private Material[] mechaSkins;
+    public Material[] mechaSkins;
 }
 
 [System.Serializable]

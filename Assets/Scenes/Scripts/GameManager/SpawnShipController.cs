@@ -111,6 +111,8 @@ public class SpawnShipController : MonoBehaviour
     {
         if (player == null) return;
 
+        player.GetComponentInChildren<MechHudController>().Initialize(player);
+
         player.GetComponent<IKFootSolver>().enabled = true;
 
         player.SetParent(null, true);

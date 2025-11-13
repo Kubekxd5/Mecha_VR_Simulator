@@ -6,9 +6,9 @@ public class WeaponSO : ScriptableObject
     [Header("General Info")]
     [SerializeField] private string weaponName;
     [SerializeField] private Sprite weaponIcon;
-    [SerializeField] private WeaponType weaponType;
-    [SerializeField] private WeaponClass weaponClass;
-    [SerializeField] private GameObject weaponPrefab;
+    public WeaponType weaponType;
+    public WeaponClass weaponClass;
+    public GameObject weaponPrefab;
 
     [Header("Stats")]
     public float damage = 25f;

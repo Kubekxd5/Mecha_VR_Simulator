@@ -39,7 +39,7 @@ public class MechaControls : MonoBehaviour
     private float rightThrottle;
     private Quaternion headRotation;
     private float currentHeadYaw;
-	
+	private bool hasBeenInitialized = false;
     void Start()
     {
         headRotation = headTransform.localRotation;
@@ -47,7 +47,7 @@ public class MechaControls : MonoBehaviour
 
     void Update()
     {
-        if (!debugMode)
+        if (!debugMode && hasBeenInitialized)
         {
             Vector2 moveInput = movementJoystick.Output;
             float leftTarget = moveInput.y - moveInput.x;
@@ -72,6 +72,22 @@ public class MechaControls : MonoBehaviour
         ikFootSolver.MoveSpeed = this.moveSpeed;
 		
 		ApplyMovement();
+    }
+
+    public void InitializeControls()
+    {
+        foreach (var joystick in GetComponentsInChildren<VRJoystickController>(true))
+        {
+            if (joystick.isLeft)
+                movementJoystick = joystick;
+            else
+                aimingJoystick = joystick;
+        }
+
+        if (movementJoystick != null && aimingJoystick != null)
+        {
+            hasBeenInitialized = true;
+        }
     }
 
 	void HandleHeightInput()

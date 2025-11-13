@@ -1,5 +1,4 @@
 using UnityEngine;
-using static UnityEngine.Rendering.VirtualTexturing.Debugging;
 
 public class VRJoystickController : VRInteractable
 {
@@ -13,6 +12,7 @@ public class VRJoystickController : VRInteractable
     [SerializeField] private float impactStrength = 1f;
     [SerializeField] private float returnSpeed = 10f;
 
+    public bool isLeft = false;
     public Vector2 Output { get; private set; }
 
     private Quaternion initialPivotLocalRotation;

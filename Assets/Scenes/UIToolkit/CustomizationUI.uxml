@@ -1,0 +1,19 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/Panel.uss?fileID=7433441132597879392&amp;guid=9d9fa4db41b77584385e05829223476c&amp;type=3#Panel" />
+    <ui:VisualElement name="RootContainer" style="flex-grow: 1; flex-direction: row;">
+        <ui:VisualElement name="SettingsPanel" style="flex-grow: 1; width: 50%; background-image: url(&quot;project://database/Assets/Samples/XR%20Interaction%20Toolkit/3.0.8/XR%20Device%20Simulator/UI/General/DeviceSimUI_bg.png?fileID=21300000&amp;guid=d7348fb3f11ba4f6f933462328963785&amp;type=3#DeviceSimUI_bg&quot;); margin-left: 50px; margin-top: 50px; margin-right: 50px; margin-bottom: 50px; -unity-background-image-tint-color: rgba(0, 236, 255, 0.31);">
+            <ui:VisualElement name="MaterialInputPanel" style="flex-grow: 1; justify-content: flex-end; padding-top: 30px; padding-right: 30px; padding-bottom: 30px; padding-left: 30px;">
+                <ui:DropdownField label="Material:" name="MaterialSelectDropdown" style="font-size: 60px; color: rgb(0, 233, 255); -unity-font-style: bold;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="MaterialEditPanel" style="flex-grow: 1; padding-top: 30px; padding-right: 30px; padding-bottom: 30px; padding-left: 30px;">
+                <ui:Slider label="Offset X:" value="42" high-value="100" name="OffsetXSlider" style="font-size: 60px; color: rgb(0, 233, 255); -unity-font-style: bold;" />
+                <ui:Slider label="Offset Y:" value="42" high-value="100" name="OffsetYSlider" style="font-size: 60px; color: rgb(0, 233, 255); -unity-font-style: bold;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="PreviewPanel" style="flex-grow: 1; width: 50%; margin-top: 50px; margin-right: 50px; margin-bottom: 50px; margin-left: 50px; background-image: url(&quot;project://database/Assets/Samples/XR%20Interaction%20Toolkit/3.0.8/XR%20Device%20Simulator/UI/General/DeviceSimUI_bg.png?fileID=21300000&amp;guid=d7348fb3f11ba4f6f933462328963785&amp;type=3#DeviceSimUI_bg&quot;); -unity-background-image-tint-color: rgba(0, 236, 255, 0.31); justify-content: center; align-items: center;">
+            <ui:VisualElement name="PreviewImage" style="flex-grow: 1; width: 75%; height: 512px; background-image: url(&quot;project://database/Assets/Scenes/Textures/MechPreview.renderTexture?fileID=8400000&amp;guid=6b3ae5c1c0b5efa4194d4934f3f73307&amp;type=2#MechPreview&quot;); -unity-background-scale-mode: scale-to-fit; padding-top: 0; padding-right: 8%; padding-bottom: 15%; padding-left: 0; align-self: auto; margin-left: 8%; margin-bottom: 0; margin-top: 15%;">
+                <ui:VisualElement name="PreviewFrame" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Scenes/Sprites/UI%20Elements/Elements1.png?fileID=758621798&amp;guid=8b1ef5d69ce2b4d4783d310e4e793a63&amp;type=3#Elements1_3&quot;); -unity-background-scale-mode: scale-to-fit; background-position-y: center; width: 100%; height: 100%;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
