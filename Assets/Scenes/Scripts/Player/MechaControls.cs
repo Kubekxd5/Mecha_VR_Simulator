@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class MechaControls : MonoBehaviour
@@ -27,6 +28,11 @@ public class MechaControls : MonoBehaviour
     [SerializeField] private float headRotationSmoothTime = 0.1f;
     [SerializeField] private float headRotationSpeed = 5f;
     [SerializeField] private RotationAxis rotationAxis = RotationAxis.Y;
+
+    [Header("Collision Handling")]
+    [SerializeField] private float collisionCheckDistance = 1.5f;
+    [SerializeField] private float collisionRadius = 1f;
+    [SerializeField] private LayerMask collisionMask;
 
     [Header("Component References")]
     [SerializeField] private VRJoystickController movementJoystick;
@@ -143,8 +149,38 @@ public class MechaControls : MonoBehaviour
         bool canMove = !onlyMoveWhenBothGrounded || ikFootSolver.CanMove;
         if(canMove)
         {
+            CheckCollision(forwardMovement);
+
             transform.Translate((moveSpeed / 2) * forwardMovement * Time.deltaTime * Vector3.forward);
             transform.Rotate(Time.deltaTime * turnMovement * turnSpeed * Vector3.up);
+        }
+    }
+    
+    private void CheckCollision(float forwardMovement)
+    {
+        Vector3 movementVector = (moveSpeed/2) * forwardMovement * Time.deltaTime * Vector3.forward;
+
+        if (forwardMovement <= 0.001f)
+        {
+            return;
+        }
+
+        Vector3 worldSpaceMovementDir = transform.TransformDirection(Vector3.forward);
+
+        RaycastHit[] hits = Physics.SphereCastAll(transform.position, collisionRadius, worldSpaceMovementDir,
+            collisionCheckDistance, collisionMask);
+
+        if (hits.Length > 0)
+        {
+            foreach (RaycastHit hit in hits)
+            {
+                TerrainObject terrainObject = hit.collider.gameObject.GetComponent<TerrainObject>();
+                if (terrainObject != null)
+                {
+                    Vector3 impactDirection = worldSpaceMovementDir;
+                    terrainObject.FallOver(impactDirection);
+                }
+            }
         }
     }
 }
