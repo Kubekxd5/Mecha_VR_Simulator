@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ba2558080006aa45b2432bc400bf4d9, type: 3}
+  m_Name: DoublePulseCannon
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponSO
+  weaponName: Double Pulse Cannon
+  weaponIcon: {fileID: 0}
+  weaponType: 1
+  weaponClass: 0
+  weaponPrefab: {fileID: 273670008583859937, guid: 271cfd4c47a000240be693e0514ba88f, type: 3}
+  damage: 2
+  fireRate: 1
+  range: 100
+  projectileSpeed: 60
+  energyCost: 5
+  overheatThreshold: 10
+  cooldownTime: 2
+  projectilePrefab: {fileID: 4140426489896266076, guid: 99729fb83fb6c57479a37bf0a1ac043f, type: 3}
+  projectileType: 1
+  fireSounds:
+  - {fileID: 8300000, guid: 16fba6d30ed741d4a9fdd6e79ee2f3ac, type: 3}
+  muzzleFlashVFX: {fileID: 8596137704382848992, guid: 6533ef17a3883454e84802ec2c9769fc, type: 3}
+  impactVFX: {fileID: 0}

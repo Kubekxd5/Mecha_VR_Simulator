@@ -73,12 +73,13 @@ providers = {
 objectSelectors = {
 }
 recentSearches = [
+	"xri right "
+	"xri left i"
 	"xri right"
 	"xri lef"
 	"xri left"
 	"xri left Interaction"
 	"xri left "
-	"xri left i"
 	"xri left interaction"
 	"xri left inte"
 	"xri left locom"

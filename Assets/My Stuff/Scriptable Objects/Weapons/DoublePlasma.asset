@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ba2558080006aa45b2432bc400bf4d9, type: 3}
+  m_Name: DoublePlasma
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponSO
+  weaponName: Double Plasma Rifle
+  weaponIcon: {fileID: 0}
+  weaponType: 1
+  weaponClass: 0
+  weaponPrefab: {fileID: 6668838254136972096, guid: 06b139c3e3eff954d8b3705a4cc71cb1, type: 3}
+  damage: 3
+  fireRate: 0.5
+  range: 100
+  projectileSpeed: 80
+  energyCost: 5
+  overheatThreshold: 10
+  cooldownTime: 2
+  projectilePrefab: {fileID: 4140426489896266076, guid: ac76e223188a5f447a85d33588c7bde2, type: 3}
+  projectileType: 1
+  fireSounds:
+  - {fileID: 8300000, guid: 16fba6d30ed741d4a9fdd6e79ee2f3ac, type: 3}
+  muzzleFlashVFX: {fileID: 8596137704382848992, guid: 6533ef17a3883454e84802ec2c9769fc, type: 3}
+  impactVFX: {fileID: 0}

@@ -8,6 +8,9 @@ TagManager:
   - CockpitSlot
   - WeaponSlot
   - PlayerSpawn
+  - RendererCamera
+  - EnemyHitbox
+  - PlayerHand
   layers:
   - Default
   - TransparentFX
@@ -18,9 +21,9 @@ TagManager:
   - Player
   - 
   - Enemy
+  - EnemyHitbox
   - 
-  - 
-  - 
+  - Particles
   - Player_Cockpit
   - 
   - Mech_Head

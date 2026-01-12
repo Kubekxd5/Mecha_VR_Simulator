@@ -1,0 +1,30 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/MyStyles.uss?fileID=7433441132597879392&amp;guid=88c8b5a4367600c4096ab633666e571c&amp;type=3#MyStyles" />
+    <engine:VisualElement name="HUD_Root" style="flex-grow: 1; width: 100%; height: 100%;">
+        <engine:VisualElement name="MainFrame" style="flex-grow: 1; position: absolute; width: 100%; height: 100%; background-image: url(&quot;project://database/Assets/My%20Stuff/Sprites/UI%20Elements/Border2.png?fileID=2800000&amp;guid=67cbd50a952936f42bf9e2c67324fb2f&amp;type=3#Border2&quot;); -unity-background-image-tint-color: rgb(0, 255, 246);">
+            <engine:VisualElement name="TopBarContainer" style="flex-grow: 1; height: 20%; justify-content: flex-start; align-items: center; align-content: center; align-self: center; flex-direction: column;">
+                <engine:VisualElement name="Compass" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/My%20Stuff/Sprites/UI%20Elements/Elements1.png?fileID=-1158458183&amp;guid=8b1ef5d69ce2b4d4783d310e4e793a63&amp;type=3#Elements1_5&quot;); -unity-background-scale-mode: scale-to-fit; background-position-x: center 0; background-position-y: center 0; width: 356px; -unity-background-image-tint-color: rgb(0, 255, 209); top: -47px; background-color: rgba(0, 0, 0, 0); font-size: 91px;">
+                    <engine:Label text="Compass" name="CompassText" class="MyLabelStyle" />
+                </engine:VisualElement>
+            </engine:VisualElement>
+            <engine:VisualElement name="CenterElementsContainer" style="flex-grow: 1; height: 50%; justify-content: center; align-items: center; align-content: center; align-self: auto;">
+                <engine:VisualElement name="Crosshair" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/My%20Stuff/Sprites/UI%20Elements/Crosshair2.png?fileID=2800000&amp;guid=05c7761d443246c418f533a579f96ef1&amp;type=3#Crosshair2&quot;); -unity-background-scale-mode: scale-to-fit; width: 40%; height: 40%; position: relative; background-size: 500px 500px; align-content: center; align-self: center; justify-content: center; align-items: center; top: -85px;">
+                    <engine:Label text="1000m" name="CrosshairDistanceCounter" style="-unity-text-align: upper-right; font-size: 26px; color: rgb(1, 233, 227); -unity-font-style: normal; justify-content: flex-end; align-items: center; align-self: flex-end; align-content: center; padding-right: 1px; margin-top: 0; flex-wrap: wrap-reverse; flex-direction: column-reverse; white-space: pre-wrap; width: 89px; height: auto; margin-right: 108px; margin-bottom: 48px; -unity-text-outline-color: rgb(255, 0, 40); -unity-text-outline-width: 2px; text-shadow: 10px 10px 20px rgb(0, 75, 74);" />
+                </engine:VisualElement>
+            </engine:VisualElement>
+            <engine:VisualElement name="BottomBarContainer" style="flex-grow: 1; flex-direction: row; height: 30%;">
+                <engine:VisualElement name="LeftBox" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/My%20Stuff/Sprites/UI%20Elements/Elements1.png?fileID=-605480379&amp;guid=8b1ef5d69ce2b4d4783d310e4e793a63&amp;type=3#Elements1_1&quot;); -unity-background-scale-mode: scale-to-fit; width: 360px; -unity-background-image-tint-color: rgb(0, 255, 221); align-items: center; justify-content: center; left: -90px;">
+                    <engine:Label text="HP: 100%" name="HealthLabel" class="MyLabelStyle" style="font-size: 40px; color: rgb(0, 255, 221); margin-top: 30px;" />
+                </engine:VisualElement>
+                <engine:VisualElement name="CenterPanel" style="flex-grow: 1; align-items: center; padding-bottom: 0; padding-left: 20px; justify-content: flex-end; align-content: flex-end; align-self: flex-start; padding-top: 105px;">
+                    <engine:VisualElement name="CenterBox" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/My%20Stuff/Sprites/UI%20Elements/Elements1.png?fileID=884480523&amp;guid=8b1ef5d69ce2b4d4783d310e4e793a63&amp;type=3#Elements1_8&quot;); -unity-background-scale-mode: scale-to-fit; width: 360px; -unity-background-image-tint-color: rgb(0, 255, 221); align-content: center; justify-content: center; align-self: center; align-items: center; padding-top: 40px;">
+                        <engine:Label text="70 mph" name="CurrentSpeedLabel" class="MyLabelStyle" />
+                    </engine:VisualElement>
+                </engine:VisualElement>
+                <engine:VisualElement name="RightPanel" style="flex-grow: 1; align-items: flex-end; padding-right: 20px; padding-bottom: 25px;">
+                    <engine:VisualElement name="RightBox" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/My%20Stuff/Sprites/UI%20Elements/Elements1.png?fileID=-605480379&amp;guid=8b1ef5d69ce2b4d4783d310e4e793a63&amp;type=3#Elements1_1&quot;); -unity-background-scale-mode: scale-to-fit; width: 360px; -unity-background-image-tint-color: rgb(0, 255, 221); background-repeat: no-repeat no-repeat;" />
+                </engine:VisualElement>
+            </engine:VisualElement>
+        </engine:VisualElement>
+    </engine:VisualElement>
+</engine:UXML>
