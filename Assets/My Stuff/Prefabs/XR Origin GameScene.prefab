@@ -1260,7 +1260,7 @@ SphereCollider:
   m_ProvidesContacts: 1
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.02
+  m_Radius: 0.01
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &5088444896874644558
 MonoBehaviour:
@@ -1279,7 +1279,7 @@ MonoBehaviour:
   joystickAction: {fileID: -8198699208435500284, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   buttonAAction: {fileID: -3599823989380923159, guid: 0be0028c24f2a4c14a96b6aa39055933, type: 3}
   buttonBAction: {fileID: -8069514856583376848, guid: 0be0028c24f2a4c14a96b6aa39055933, type: 3}
-  detectionRadius: 0.1
+  detectionRadius: 0.05
 --- !u!54 &8916043824048196736
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1789,7 +1789,7 @@ SphereCollider:
   m_ProvidesContacts: 1
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.02
+  m_Radius: 0.01
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &3593610342103461674
 MonoBehaviour:
@@ -1808,7 +1808,7 @@ MonoBehaviour:
   joystickAction: {fileID: 6972639530819350904, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   buttonAAction: {fileID: -3599823989380923159, guid: 0be0028c24f2a4c14a96b6aa39055933, type: 3}
   buttonBAction: {fileID: -8069514856583376848, guid: 0be0028c24f2a4c14a96b6aa39055933, type: 3}
-  detectionRadius: 0.1
+  detectionRadius: 0.05
 --- !u!54 &8648801140446601914
 Rigidbody:
   m_ObjectHideFlags: 0

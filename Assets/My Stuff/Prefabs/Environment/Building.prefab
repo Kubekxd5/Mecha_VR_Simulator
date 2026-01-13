@@ -54,6 +54,7 @@ MonoBehaviour:
   fallCheckRayDistance: 0
   lifetimeAfterFall: 0
   minImpactForce: 1
+  pivotTransform: {fileID: 0}
 --- !u!114 &4203712463313349064
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -73,7 +74,7 @@ MonoBehaviour:
   enemyPrefabs:
   - {fileID: 1296282787554164875, guid: ba28a6064aaf00e4cab7cbfa79686781, type: 3}
   spawnAmount: 1
-  spawnCooldown: 5
+  spawnCooldown: 10
   maxEnemiesToSpawn: 2
   detectionRadius: 30
   playerLayer:
@@ -110,7 +111,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0.18, z: 0}
-  m_LocalScale: {x: 1.4011225, y: 1.4011225, z: 1.4011225}
+  m_LocalScale: {x: 1.0296103, y: 1.2834092, z: 1.0296103}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7557777150799288443}

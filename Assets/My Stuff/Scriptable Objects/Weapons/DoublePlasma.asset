@@ -17,10 +17,10 @@ MonoBehaviour:
   weaponType: 1
   weaponClass: 0
   weaponPrefab: {fileID: 6668838254136972096, guid: 06b139c3e3eff954d8b3705a4cc71cb1, type: 3}
-  damage: 3
-  fireRate: 0.5
+  damage: 2
+  fireRate: 4
   range: 100
-  projectileSpeed: 80
+  projectileSpeed: 50
   energyCost: 5
   overheatThreshold: 10
   cooldownTime: 2

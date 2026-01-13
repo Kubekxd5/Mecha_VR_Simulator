@@ -18,9 +18,9 @@ MonoBehaviour:
   weaponClass: 0
   weaponPrefab: {fileID: 7655489738093737389, guid: 40409e7cd3e70764197c0c62d12c1dbc, type: 3}
   damage: 5
-  fireRate: 2
-  range: 150
-  projectileSpeed: 100
+  fireRate: 1
+  range: 100
+  projectileSpeed: 80
   energyCost: 5
   overheatThreshold: 10
   cooldownTime: 2
