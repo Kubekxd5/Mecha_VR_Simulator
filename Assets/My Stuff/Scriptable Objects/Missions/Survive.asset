@@ -16,5 +16,5 @@ MonoBehaviour:
   descriptionTemplate: Survive for {0} seconds.
   missionType: 1
   targetCategory: 4
-  minTargetValue: 60
-  maxTargetValue: 120
+  minTargetValue: 120
+  maxTargetValue: 240

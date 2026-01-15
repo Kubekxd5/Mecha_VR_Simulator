@@ -85,13 +85,43 @@ public class WeaponBehaviour : MonoBehaviour
 
     private void FireLaser()
     {
-        if (!weaponData.ProjectilePrefab) return;
-        GameObject beam = Instantiate(weaponData.ProjectilePrefab, firePoint.position, firePoint.rotation);
-        var lr = beam.GetComponent<LineRenderer>();
-        if (lr)
+        if (weaponData == null || weaponData.ProjectilePrefab == null) return;
+
+        LayerMask maskToUse = -1;
+        BeamController beamPrefabScript = weaponData.ProjectilePrefab.GetComponent<BeamController>();
+
+        if (beamPrefabScript != null)
         {
-            lr.SetPosition(0, firePoint.position);
-            lr.SetPosition(1, firePoint.position + firePoint.forward * weaponData.range);
+            maskToUse = beamPrefabScript.TargetLayers;
+        }
+
+        Vector3 origin = firePoint.position;
+        Vector3 direction = firePoint.forward;
+        Vector3 targetPoint = origin + (direction * weaponData.range);
+
+        RaycastHit hit;
+        if (Physics.Raycast(origin, direction, out hit, weaponData.range, maskToUse))
+        {
+            targetPoint = hit.point;
+            ApplyLaserDamage(hit.collider.gameObject);
+
+            if (weaponData.ImpactVFX != null)
+                Instantiate(weaponData.ImpactVFX, hit.point, Quaternion.LookRotation(hit.normal));
+        }
+
+        GameObject beamObj = Instantiate(weaponData.ProjectilePrefab, Vector3.zero, Quaternion.identity);
+        BeamController beamInstance = beamObj.GetComponent<BeamController>();
+        if (beamInstance != null) beamInstance.SetupBeam(firePoint.position, targetPoint, 0.15f);
+    }
+
+    private void ApplyLaserDamage(GameObject hitObject)
+    {
+        Damageable d = hitObject.GetComponent<Damageable>();
+        if (d != null) d.ReceiveDamage(weaponData.damage);
+        else
+        {
+            IDamageableEntity entity = hitObject.GetComponentInParent<IDamageableEntity>();
+            if (entity != null) entity.TakeDamage(weaponData.damage);
         }
     }
 }

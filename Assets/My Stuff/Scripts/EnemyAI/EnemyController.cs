@@ -11,6 +11,7 @@ public class EnemyController : MonoBehaviour, IDamageableEntity
 
     [Header("Death Settings")]
     [SerializeField] private GameObject explosionEffect;
+    [SerializeField] private float explosionLifetime = 2.0f;
     [SerializeField] private GameObject lootDropPrefab;
     [SerializeField] private float destroyDelay = 0.5f;
 
@@ -40,6 +41,7 @@ public class EnemyController : MonoBehaviour, IDamageableEntity
 
     private void Die()
     {
+        if (isDead) return;
         isDead = true;
 
         if (aiMovement != null)
@@ -54,13 +56,14 @@ public class EnemyController : MonoBehaviour, IDamageableEntity
 
         if (MissionManager.Instance != null)
         {
-            // Reports progress to any active Elimination missions
             MissionManager.Instance.ReportProgress(MissionType.Elimination, myCategory, 1);
         }
 
         if (explosionEffect != null)
         {
-            Instantiate(explosionEffect, transform.position, transform.rotation);
+            GameObject effectInstance = Instantiate(explosionEffect, transform.position, transform.rotation);
+
+            Destroy(effectInstance, explosionLifetime);
         }
 
         if (lootDropPrefab != null)

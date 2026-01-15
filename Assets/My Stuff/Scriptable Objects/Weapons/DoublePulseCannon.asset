@@ -24,7 +24,7 @@ MonoBehaviour:
   energyCost: 5
   overheatThreshold: 10
   cooldownTime: 2
-  projectilePrefab: {fileID: 4140426489896266076, guid: 99729fb83fb6c57479a37bf0a1ac043f, type: 3}
+  projectilePrefab: {fileID: 4140426489896266076, guid: ac76e223188a5f447a85d33588c7bde2, type: 3}
   projectileType: 1
   fireSounds:
   - {fileID: 8300000, guid: 16fba6d30ed741d4a9fdd6e79ee2f3ac, type: 3}

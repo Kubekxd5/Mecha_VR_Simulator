@@ -16,5 +16,5 @@ MonoBehaviour:
   descriptionTemplate: Destroy {0} buildings.
   missionType: 0
   targetCategory: 1
-  minTargetValue: 1
-  maxTargetValue: 2
+  minTargetValue: 2
+  maxTargetValue: 4

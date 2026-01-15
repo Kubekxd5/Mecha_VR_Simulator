@@ -47,13 +47,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TerrainObject
   myCategory: 1
-  objectRadius: 12
+  objectRadius: 14
   health: 30
   canBeDestroyed: 1
   fallSpeed: 0
-  fallCheckRayDistance: 0
   lifetimeAfterFall: 0
   minImpactForce: 1
+  breakEffect: {fileID: 8596137704382848992, guid: d78366828af60174ab8d5ceb1380cfc2, type: 3}
+  breakEffectLifetime: 1
+  landingEffect: {fileID: 0}
+  landingEffectLifetime: 1
   pivotTransform: {fileID: 0}
 --- !u!114 &4203712463313349064
 MonoBehaviour:

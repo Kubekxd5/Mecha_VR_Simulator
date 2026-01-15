@@ -186,12 +186,14 @@ public class GameManager : MonoBehaviour
             Debug.LogWarning("WARNING: RendererCamera or ScreenCameraPoint not found in Mecha hierarchy.");
         }
 
-        // 9. INIT CONTROLS
+       // 9. INIT CONTROLS
         var controls = spawnedMechaInstance.GetComponent<MechaControls>();
         if (controls != null)
             controls.InitializeControls();
         else
             Debug.LogError("MechaControls missing on mecha prefab!");
+
+        controls.enabled = false;
 
         // 10. SPAWN SHIP
         Vector3 shipStartPosition = spawnPoint.position - (spawnPoint.forward * 800f) + (Vector3.up * 50f);

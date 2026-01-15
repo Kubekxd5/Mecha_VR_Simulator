@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 [RequireComponent(typeof(IKFootSolver))]
 public class AIController : MonoBehaviour
@@ -25,6 +26,13 @@ public class AIController : MonoBehaviour
     [Header("AI Head Rotation")]
     [SerializeField] private Transform headTransform;
     [SerializeField] private HeadRotationSettings headRotation;
+
+    [Header("AI Combat Settings")]
+    [SerializeField] private List<WeaponBehaviour> aiWeapons = new List<WeaponBehaviour>();
+    [SerializeField] private float shootingDistance = 15f;
+    [Tooltip("AI will only shoot if the player is within this angle relative to the head's forward direction")]
+    [Range(1f, 45f)]
+    [SerializeField] private float shootingAngleThreshold = 10f;
 
     private IKFootSolver footSolver;
 
@@ -57,6 +65,7 @@ public class AIController : MonoBehaviour
 
         FacePlayer();
         MoveTowardsPlayer();
+        HandleShooting();
     }
 
     private void LookForPlayer()
@@ -224,7 +233,28 @@ public class AIController : MonoBehaviour
         headTransform.localRotation,
         finalLocalRotation,
         Time.deltaTime * headRotation.rotationSpeed
-    );
+        );
+    }
+    private void HandleShooting()
+    {
+        if (!playerDetected || playerTarget == null || aiWeapons.Count == 0) return;
+
+        float distanceToPlayer = Vector3.Distance(transform.position, playerTarget.position);
+        if (distanceToPlayer > shootingDistance) return;
+
+        Vector3 dirToPlayer = (playerTarget.position - headTransform.position).normalized;
+        float angleToPlayer = Vector3.Angle(headTransform.forward, dirToPlayer);
+
+        if (angleToPlayer <= shootingAngleThreshold)
+        {
+            foreach (WeaponBehaviour weapon in aiWeapons)
+            {
+                if (weapon != null)
+                {
+                    weapon.Fire();
+                }
+            }
+        }
     }
 
     private void OnDrawGizmos()
@@ -246,12 +276,13 @@ public class AIController : MonoBehaviour
         Gizmos.DrawLine(castingCenter.position, castingCenter.position + leftBoundary * detectionRadius);
         Gizmos.DrawLine(castingCenter.position, castingCenter.position + rightBoundary * detectionRadius);
 
+        // SHOOTING RANGE
+        Gizmos.color = Color.magenta;
+        Gizmos.DrawWireSphere(castingCenter.position, shootingDistance);
+
         // DIRECTION TO PLAYER
-
         if (playerTarget == null) return;
-
         Gizmos.color = playerDetected ? Color.green : Color.yellow;
-
         Gizmos.DrawLine(castingCenter.position, playerTarget.position);
 
     }

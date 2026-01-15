@@ -128,6 +128,12 @@ public class SpawnShipController : MonoBehaviour
             Debug.LogWarning("MechHudController not found on player.");
         }
 
+        if (player.GetComponent<MechaControls>() != null)
+            player.GetComponent<MechaControls>().enabled = true;
+        else {
+            Debug.LogError("MechaControls missing on mecha prefab!");
+        }
+
         if (player.TryGetComponent<IKFootSolver>(out var footSolver))
             footSolver.enabled = true;
 

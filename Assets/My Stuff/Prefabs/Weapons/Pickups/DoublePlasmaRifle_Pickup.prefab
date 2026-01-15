@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6416627854980762650}
   - component: {fileID: 6469229020114601665}
   - component: {fileID: 588543985976410400}
-  m_Layer: 15
+  m_Layer: 0
   m_Name: Detail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -70,7 +70,7 @@ MeshRenderer:
   m_Materials:
   - {fileID: 2100000, guid: 2294e56adacfee44596ce7e145f47fdf, type: 2}
   - {fileID: 2100000, guid: 7743e4cf6ffe7e148a11655df0088ddd, type: 2}
-  - {fileID: 2100000, guid: 3daebd4d9f9da0c42b55a752aa36cc97, type: 2}
+  - {fileID: 2100000, guid: 87858f841225a034e88a69165fe0934d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -104,7 +104,7 @@ GameObject:
   - component: {fileID: 1508407437118055823}
   - component: {fileID: 283699118677550671}
   - component: {fileID: 312120866121907102}
-  m_Layer: 15
+  m_Layer: 0
   m_Name: Pulse (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5006,7 +5006,7 @@ GameObject:
   - component: {fileID: 4491044581723454379}
   - component: {fileID: 2061623777723247080}
   - component: {fileID: 463151387606797886}
-  m_Layer: 15
+  m_Layer: 0
   m_Name: Pulse (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9912,7 +9912,7 @@ GameObject:
   - component: {fileID: 5750322854189073079}
   - component: {fileID: 5401180086910405955}
   - component: {fileID: 422385596780180160}
-  m_Layer: 15
+  m_Layer: 0
   m_Name: DoublePlasmaRifle_Pickup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9927,7 +9927,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8315513224089019105}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.47855315, y: -0.4873724, z: 0.51645523, w: 0.5164583}
+  m_LocalRotation: {x: 0.4785549, y: -0.48737046, z: 0.5164535, w: 0.5164601}
   m_LocalPosition: {x: 7.901, y: 0.053, z: -7.851}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_ConstrainProportionsScale: 0
@@ -9970,7 +9970,7 @@ MeshRenderer:
   m_Materials:
   - {fileID: 2100000, guid: f9221d700c2f3e9409c8e8fbb06e2d07, type: 2}
   - {fileID: 2100000, guid: f9221d700c2f3e9409c8e8fbb06e2d07, type: 2}
-  - {fileID: 2100000, guid: 3daebd4d9f9da0c42b55a752aa36cc97, type: 2}
+  - {fileID: 2100000, guid: 87858f841225a034e88a69165fe0934d, type: 2}
   - {fileID: -876546973899608171, guid: b64dee04c2435a048aa7bc3f5b1e2442, type: 3}
   - {fileID: -4973734387028869240, guid: b64dee04c2435a048aa7bc3f5b1e2442, type: 3}
   m_StaticBatchInfo:

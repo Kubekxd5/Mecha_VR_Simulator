@@ -118,7 +118,7 @@ TextureImporter:
         width: 74
         height: 60
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -127,6 +127,94 @@ TextureImporter:
       bones: []
       spriteID: 53514dff25a76d648bba246537eb965e
       internalID: -359699264
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elements2_1
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 102
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a728a27fd229dca45ad29e0219f3e081
+      internalID: 1320171951
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elements2_2
+      rect:
+        serializedVersion: 2
+        x: 894
+        y: 645
+        width: 81
+        height: 70
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c7ef27654c25e5040a5457b7524efbc3
+      internalID: -836427123
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elements2_3
+      rect:
+        serializedVersion: 2
+        x: 57
+        y: 752
+        width: 64
+        height: 59
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e3eb1de63ed6e074793fe7fdcc4f8960
+      internalID: -1570066990
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Elements2_4
+      rect:
+        serializedVersion: 2
+        x: 812
+        y: 848
+        width: 62
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d85085196d8ed849a10f4db934317b6
+      internalID: 1729467112
       vertices: []
       indices: 
       edges: []
@@ -146,6 +234,10 @@ TextureImporter:
       entries: []
     nameFileIdTable:
       Elements2_0: -359699264
+      Elements2_1: 1320171951
+      Elements2_2: -836427123
+      Elements2_3: -1570066990
+      Elements2_4: 1729467112
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7605370771676316320}
   - component: {fileID: 2015261271231716271}
   - component: {fileID: 6720076543880636873}
-  m_Layer: 15
+  m_Layer: 0
   m_Name: Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -102,7 +102,7 @@ GameObject:
   - component: {fileID: 7568624933940492879}
   - component: {fileID: 1753505650192031554}
   - component: {fileID: 1098115207236859868}
-  m_Layer: 15
+  m_Layer: 0
   m_Name: Pulse
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5007,7 +5007,8 @@ GameObject:
   - component: {fileID: 7116741421282951009}
   - component: {fileID: 4181623350471356445}
   - component: {fileID: 5375775664459965113}
-  m_Layer: 15
+  - component: {fileID: 7170010930662355260}
+  m_Layer: 0
   m_Name: PulseCannon3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5022,7 +5023,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6246186294110324397}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.48737237, y: -0.47855318, z: 0.5164583, w: -0.51645523}
+  m_LocalRotation: {x: 0.48737046, y: 0.4785549, z: -0.5164601, w: 0.5164535}
   m_LocalPosition: {x: 9.794478, y: 0.8448415, z: -7.828429}
   m_LocalScale: {x: -11.191679, y: -11.19168, z: -11.191678}
   m_ConstrainProportionsScale: 0
@@ -5030,7 +5031,7 @@ Transform:
   - {fileID: 6776896988748822581}
   - {fileID: 7605370771676316320}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 86.128, y: -7.755, z: -97.25}
 --- !u!33 &3724230996067557869
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -5152,7 +5153,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c02c1662a15f7540a76bca18ce3c5d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WeaponPickup
-  weaponData: {fileID: 11400000, guid: 232ddb5d6293d154da631b73703d962b, type: 2}
+  weaponData: {fileID: 11400000, guid: ae8e700366b3adc4b8c82d572c3c7744, type: 2}
+--- !u!114 &7170010930662355260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6246186294110324397}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5577a535ec21fc046bcd5795ca90280d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VRInteractable
+  isGrabbable: 1
+  isHeld: 0
+  ghostObject: {fileID: 0}
+  holdingHand: {fileID: 0}
+  originalParent: {fileID: 0}
 --- !u!1 &7080740152493146602
 GameObject:
   m_ObjectHideFlags: 0
@@ -5164,7 +5182,7 @@ GameObject:
   - component: {fileID: 6776896988748822581}
   - component: {fileID: 2435236582587882310}
   - component: {fileID: 5035113320721961082}
-  m_Layer: 15
+  m_Layer: 0
   m_Name: MainPart.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}

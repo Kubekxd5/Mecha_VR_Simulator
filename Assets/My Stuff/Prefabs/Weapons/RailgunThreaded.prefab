@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4913149952917363764}
   serializedVersion: 2
-  m_LocalRotation: {x: -1.5933335e-14, y: 0.00000008183062, z: 1, w: 0.00000019470718}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0, y: -0, z: -0.0194}
   m_LocalScale: {x: 0.8462045, y: 1.1, z: 0.86790204}
   m_ConstrainProportionsScale: 0
@@ -62,13 +62,15 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 1026141514601398126, guid: d607a81a1c46cc24cb2cc9389b279062, type: 3}
   - {fileID: -532389894897991750, guid: d607a81a1c46cc24cb2cc9389b279062, type: 3}
   - {fileID: 3498384624342873181, guid: d607a81a1c46cc24cb2cc9389b279062, type: 3}
-  - {fileID: 985087768544658472, guid: d607a81a1c46cc24cb2cc9389b279062, type: 3}
+  - {fileID: 2100000, guid: e46f1d3c5e691954896bb3e1dad33718, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -86,6 +88,7 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
@@ -115,14 +118,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5281640335828875652}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 274387592614338267}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &-2966979732575245752
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -136,7 +139,39 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponData: {fileID: 0}
-  firePoint: {fileID: 0}
+  isLeft: 0
+  firePoint: {fileID: 701376406058119292}
+--- !u!1 &5774628096521660079
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 701376406058119292}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &701376406058119292
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5774628096521660079}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.707107, y: 4.7178986e-15, z: -1.1709247e-15, w: 0.7071066}
+  m_LocalPosition: {x: -0, y: -0.0197, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2080542884056020561}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!1 &6286201181061600130
 GameObject:
   m_ObjectHideFlags: 0
@@ -167,7 +202,8 @@ Transform:
   m_LocalPosition: {x: 1.7891335e-15, y: -0.052857153, z: 0.0000000013191538}
   m_LocalScale: {x: 0.8571429, y: 4.285714, z: 0.8571429}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 701376406058119292}
   m_Father: {fileID: 274387592614338267}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &9179538263813230008
@@ -198,13 +234,15 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 1026141514601398126, guid: d607a81a1c46cc24cb2cc9389b279062, type: 3}
   - {fileID: -532389894897991750, guid: d607a81a1c46cc24cb2cc9389b279062, type: 3}
   - {fileID: 3498384624342873181, guid: d607a81a1c46cc24cb2cc9389b279062, type: 3}
-  - {fileID: 985087768544658472, guid: d607a81a1c46cc24cb2cc9389b279062, type: 3}
+  - {fileID: 2100000, guid: e46f1d3c5e691954896bb3e1dad33718, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -222,6 +260,7 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0

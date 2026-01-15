@@ -18,7 +18,7 @@ MonoBehaviour:
   mechaType: 1
   mechPrefab: {fileID: 5076780571292011115, guid: f2458d45f06d5fe43ac7fc6283ce1adc, type: 3}
   mechaStats:
-    health: 1000
+    health: 300
     walkSpeed: 2
     turnSpeed: 20
     throttleSpeed: 4

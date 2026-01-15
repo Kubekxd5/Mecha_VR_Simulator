@@ -116,6 +116,8 @@ SkinnedMeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -139,6 +141,7 @@ SkinnedMeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
@@ -1054,7 +1057,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &529213288248593661
 Transform:
   m_ObjectHideFlags: 0
@@ -1213,6 +1216,7 @@ MonoBehaviour:
     m_Bits: 1048576
   castingCenter: {fileID: 6916046068538145210}
   enemyFieldOfView: 90
+  stoppingFieldOfView: 110
   stoppingDistance: 6
   detectionRadius: 20
   moveSpeed: 0.75
@@ -1223,10 +1227,17 @@ MonoBehaviour:
   turnAngleThreshold: 30
   moveAngleThreshold: 15
   headTransform: {fileID: 5297301853797972732}
-  maxYawAngle: 90
-  headRotationSmoothTime: 1
-  headRotationSpeed: 10
-  rotationAxis: 1
+  headRotation:
+    rotateOnX: 0
+    rotateOnY: 0
+    rotateOnZ: 0
+    upLimit: 0
+    downLimit: 0
+    leftLimit: 0
+    rightLimit: 0
+    zLeftLimit: 0
+    zRightLimit: 0
+    rotationSpeed: 0
 --- !u!1 &7346221870527075676
 GameObject:
   m_ObjectHideFlags: 0

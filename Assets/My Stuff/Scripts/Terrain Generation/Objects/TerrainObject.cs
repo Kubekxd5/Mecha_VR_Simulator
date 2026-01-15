@@ -15,9 +15,17 @@ public class TerrainObject : MonoBehaviour, IDamageableEntity
     [Header("Object Destruction")]
     public bool canBeDestroyed = true;
     public float fallSpeed = 1.5f;
-    public float fallCheckRayDistance = 1f;
     public float lifetimeAfterFall = 5f;
     public float minImpactForce = 1f;
+
+    [Header("Effects")]
+    [Tooltip("Plays immediately when health reaches 0 or object is struck.")]
+    [SerializeField] private GameObject breakEffect;
+    [SerializeField] private float breakEffectLifetime = 3f;
+
+    [Tooltip("Optional: Plays when the object finishes falling and hits the ground.")]
+    [SerializeField] private GameObject landingEffect;
+    [SerializeField] private float landingEffectLifetime = 3f;
 
     [Header("Pivot Settings")]
     [SerializeField] private Transform pivotTransform;
@@ -47,6 +55,12 @@ public class TerrainObject : MonoBehaviour, IDamageableEntity
     {
         if (isFalling) return;
         isFalling = true;
+
+        if (breakEffect != null)
+        {
+            GameObject effect = Instantiate(breakEffect, transform.position, transform.rotation);
+            Destroy(effect, breakEffectLifetime);
+        }
 
         if (MissionManager.Instance != null)
             MissionManager.Instance.ReportProgress(MissionType.Elimination, myCategory, 1);
@@ -89,19 +103,7 @@ public class TerrainObject : MonoBehaviour, IDamageableEntity
     {
         if (objectCollider != null) objectCollider.enabled = false;
 
-        Vector3 pivotPos;
-        if (pivotTransform != null)
-        {
-            pivotPos = pivotTransform.position;
-        }
-        else if (objectCollider != null)
-        {
-            pivotPos = new Vector3(objectCollider.bounds.center.x, objectCollider.bounds.min.y, objectCollider.bounds.center.z);
-        }
-        else
-        {
-            pivotPos = transform.position;
-        }
+        Vector3 pivotPos = GetPivotPosition();
 
         Vector3 fallDirection = impactDirection;
         fallDirection.y = 0;
@@ -116,17 +118,27 @@ public class TerrainObject : MonoBehaviour, IDamageableEntity
         while (currentRotation < totalRotation)
         {
             float step = Time.deltaTime * fallSpeed * 60f;
-
-            if (currentRotation + step > totalRotation)
-                step = totalRotation - currentRotation;
+            if (currentRotation + step > totalRotation) step = totalRotation - currentRotation;
 
             transform.RotateAround(pivotPos, rotationAxis, step);
             currentRotation += step;
-
             yield return null;
         }
 
+        if (landingEffect != null)
+        {
+            GameObject effect = Instantiate(landingEffect, transform.position, Quaternion.identity);
+            Destroy(effect, landingEffectLifetime);
+        }
+
         StartCoroutine(DestroyAfterDelay());
+    }
+
+    private Vector3 GetPivotPosition()
+    {
+        if (pivotTransform != null) return pivotTransform.position;
+        if (objectCollider != null) return new Vector3(objectCollider.bounds.center.x, objectCollider.bounds.min.y, objectCollider.bounds.center.z);
+        return transform.position;
     }
 
     private IEnumerator DestroyAfterDelay()

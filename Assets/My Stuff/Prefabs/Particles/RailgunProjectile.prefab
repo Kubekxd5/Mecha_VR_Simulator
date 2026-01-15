@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8747123717079175699}
   - component: {fileID: 467547992913593566}
   - component: {fileID: 3732164329930709657}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Shockwave
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -287,7 +287,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 2
+      scalar: 0.6
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -4847,10 +4847,12 @@ ParticleSystemRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 49e8fa54d8b5d394d98a037964663ce5, type: 2}
+  - {fileID: 2100000, guid: dde2a6e1c48b2174db61905f718ee346, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4868,6 +4870,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
@@ -4915,8 +4918,8 @@ GameObject:
   - component: {fileID: 6219896652721134390}
   - component: {fileID: 611163114329382789}
   - component: {fileID: 6391598384793159424}
-  - component: {fileID: 9000195553712221672}
-  m_Layer: 6
+  - component: {fileID: 4962283696801200303}
+  m_Layer: 0
   m_Name: RailgunProjectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4933,7 +4936,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0.1615, z: -0.0269}
-  m_LocalScale: {x: 0.18900006, y: 0.18900006, z: 0.18480001}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5255643016204926549}
@@ -5196,7 +5199,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 3.4
+      scalar: 1.6
       minScalar: 0.02
       maxCurve:
         serializedVersion: 2
@@ -8765,7 +8768,7 @@ ParticleSystem:
     radiusScale: 0.01
     collidesWith:
       serializedVersion: 2
-      m_Bits: 192
+      m_Bits: 1049217
     maxCollisionShapes: 256
     quality: 0
     voxelSize: 0.5
@@ -8803,7 +8806,7 @@ ParticleSystem:
       properties: 0
       emitProbability: 1
     - serializedVersion: 3
-      emitter: {fileID: 9193877499721227053}
+      emitter: {fileID: 0}
       type: 2
       properties: 0
       emitProbability: 1
@@ -8813,12 +8816,12 @@ ParticleSystem:
       properties: 0
       emitProbability: 1
     - serializedVersion: 3
-      emitter: {fileID: 9217390408705287425}
+      emitter: {fileID: 0}
       type: 2
       properties: 0
       emitProbability: 1
     - serializedVersion: 3
-      emitter: {fileID: 9217443438763777743}
+      emitter: {fileID: 0}
       type: 2
       properties: 0
       emitProbability: 1
@@ -9781,11 +9784,13 @@ ParticleSystemRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8031262c623a1284f9760857f5aac652, type: 2}
-  - {fileID: 2100000, guid: 87858f841225a034e88a69165fe0934d, type: 2}
+  - {fileID: 2100000, guid: e46f1d3c5e691954896bb3e1dad33718, type: 2}
+  - {fileID: 2100000, guid: 55c6d58e0cd5f6a4c8beecf0e8af5305, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -9803,6 +9808,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
@@ -9848,7 +9854,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: ce32c341d9041024484cb0745bbb44e1, type: 3}
+  m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: ce32c341d9041024484cb0745bbb44e1, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.5
@@ -9962,7 +9968,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &9000195553712221672
+--- !u!114 &4962283696801200303
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9971,11 +9977,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 5015706152454984596}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c93c02ec0f2974c45839eba7b9b3cd95, type: 3}
+  m_Script: {fileID: 11500000, guid: 376b91912bf94ca44b891faf6e387a1f, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
-  weaponController: {fileID: 0}
-  subEmmiters: []
+  m_EditorClassIdentifier: Assembly-CSharp::ProjectileController
 --- !u!1 &5964798797600914670
 GameObject:
   m_ObjectHideFlags: 0
@@ -9987,7 +9991,7 @@ GameObject:
   - component: {fileID: 5255643016204926549}
   - component: {fileID: 7462331285133173633}
   - component: {fileID: 4281714503268630751}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Sparks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14841,10 +14845,12 @@ ParticleSystemRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9aaa13d175bcf1c4b8acc4d930ee06ee, type: 2}
+  - {fileID: 2100000, guid: e46f1d3c5e691954896bb3e1dad33718, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -14862,6 +14868,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
@@ -14908,7 +14915,7 @@ GameObject:
   - component: {fileID: 3165954285969758506}
   - component: {fileID: 4930044087353610846}
   - component: {fileID: 331597135427761328}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Smoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19744,10 +19751,12 @@ ParticleSystemRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: fe3fbcea8e93fec468be670c547e0aa1, type: 2}
+  - {fileID: 2100000, guid: dde2a6e1c48b2174db61905f718ee346, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -19765,6 +19774,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
@@ -19810,7 +19820,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1232552918196878, guid: cfe0c511fa8d1cf4abf31f2f48dfe4f9, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1245903589182048, guid: cfe0c511fa8d1cf4abf31f2f48dfe4f9, type: 3}
       propertyPath: m_Layer
@@ -19830,7 +19840,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1344461201369764, guid: cfe0c511fa8d1cf4abf31f2f48dfe4f9, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1344461201369764, guid: cfe0c511fa8d1cf4abf31f2f48dfe4f9, type: 3}
       propertyPath: m_IsActive
@@ -19850,15 +19860,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4362478417301640, guid: cfe0c511fa8d1cf4abf31f2f48dfe4f9, type: 3}
       propertyPath: m_LocalScale.x
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4362478417301640, guid: cfe0c511fa8d1cf4abf31f2f48dfe4f9, type: 3}
       propertyPath: m_LocalScale.y
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4362478417301640, guid: cfe0c511fa8d1cf4abf31f2f48dfe4f9, type: 3}
       propertyPath: m_LocalScale.z
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4362478417301640, guid: cfe0c511fa8d1cf4abf31f2f48dfe4f9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -20080,10 +20090,18 @@ PrefabInstance:
       propertyPath: m_Materials.Array.size
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 199077614832586434, guid: cfe0c511fa8d1cf4abf31f2f48dfe4f9, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: e46f1d3c5e691954896bb3e1dad33718, type: 2}
     - target: {fileID: 199347173054627354, guid: cfe0c511fa8d1cf4abf31f2f48dfe4f9, type: 3}
       propertyPath: m_Materials.Array.size
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 199347173054627354, guid: cfe0c511fa8d1cf4abf31f2f48dfe4f9, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: e46f1d3c5e691954896bb3e1dad33718, type: 2}
     - target: {fileID: 199561907156230722, guid: cfe0c511fa8d1cf4abf31f2f48dfe4f9, type: 3}
       propertyPath: m_Materials.Array.size
       value: 1
@@ -20092,6 +20110,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.size
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 199686329799724470, guid: cfe0c511fa8d1cf4abf31f2f48dfe4f9, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: e46f1d3c5e691954896bb3e1dad33718, type: 2}
     - target: {fileID: 199793271222299940, guid: cfe0c511fa8d1cf4abf31f2f48dfe4f9, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -20119,6 +20141,9 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 1245903589182048, guid: cfe0c511fa8d1cf4abf31f2f48dfe4f9, type: 3}
+    - {fileID: 1268354914551280, guid: cfe0c511fa8d1cf4abf31f2f48dfe4f9, type: 3}
+    - {fileID: 1973583092543712, guid: cfe0c511fa8d1cf4abf31f2f48dfe4f9, type: 3}
+    - {fileID: 1763592520788664, guid: cfe0c511fa8d1cf4abf31f2f48dfe4f9, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cfe0c511fa8d1cf4abf31f2f48dfe4f9, type: 3}
@@ -20135,20 +20160,5 @@ ParticleSystem:
 --- !u!198 &9193459942318878901 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 198362934543878778, guid: cfe0c511fa8d1cf4abf31f2f48dfe4f9, type: 3}
-  m_PrefabInstance: {fileID: 9031125806673607375}
-  m_PrefabAsset: {fileID: 0}
---- !u!198 &9193877499721227053 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 198782689647763938, guid: cfe0c511fa8d1cf4abf31f2f48dfe4f9, type: 3}
-  m_PrefabInstance: {fileID: 9031125806673607375}
-  m_PrefabAsset: {fileID: 0}
---- !u!198 &9217390408705287425 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 198086571052507086, guid: cfe0c511fa8d1cf4abf31f2f48dfe4f9, type: 3}
-  m_PrefabInstance: {fileID: 9031125806673607375}
-  m_PrefabAsset: {fileID: 0}
---- !u!198 &9217443438763777743 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 198139600846300160, guid: cfe0c511fa8d1cf4abf31f2f48dfe4f9, type: 3}
   m_PrefabInstance: {fileID: 9031125806673607375}
   m_PrefabAsset: {fileID: 0}

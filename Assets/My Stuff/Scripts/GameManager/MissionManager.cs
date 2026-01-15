@@ -23,6 +23,7 @@ public class MissionManager : MonoBehaviour
     private List<ActiveMission> activeMissions = new List<ActiveMission>();
     private Dictionary<ActiveMission, Label> missionLabelMap = new Dictionary<ActiveMission, Label>();
     private bool isSequenceFinished = false;
+    private bool isGameOver = false;
     private Transform playerTransform;
     private Vector3 lastPlayerPosition;
     private float movementSpeedThreshold = 0.5f;
@@ -79,6 +80,9 @@ public class MissionManager : MonoBehaviour
 
     public void InitializeMissions()
     {
+        isSequenceFinished = false;
+        isGameOver = false;
+
         activeMissions.Clear();
         missionLabelMap.Clear();
 
@@ -96,7 +100,7 @@ public class MissionManager : MonoBehaviour
 
     private void Update()
     {
-        if (isSequenceFinished || activeMissions.Count == 0) return;
+        if (isSequenceFinished || isGameOver || activeMissions.Count == 0) return;
 
         bool uiNeedsUpdate = false;
         float dt = Time.deltaTime;
@@ -200,6 +204,8 @@ public class MissionManager : MonoBehaviour
 
     public void ReportProgress(MissionType type, MissionTargetCategory category, int amount = 1)
     {
+        if (isGameOver || isSequenceFinished) return;
+
         bool anyUpdated = false;
 
         foreach (var mission in activeMissions)
@@ -279,6 +285,49 @@ public class MissionManager : MonoBehaviour
         }
 
         yield return new WaitForSeconds(5.0f);
+        GameManager.Instance.ReturnToLobby();
+    }
+
+    public void ReportPlayerDeath()
+    {
+        if (isSequenceFinished || isGameOver) return;
+
+        StartCoroutine(GameOverSequence());
+    }
+
+    private IEnumerator GameOverSequence()
+    {
+        isGameOver = true;
+        Debug.Log("Mission Failed: Player Died.");
+
+        if (runtimeHUD != null)
+        {
+            VisualElement overlay = new VisualElement();
+            overlay.style.position = Position.Absolute;
+            overlay.style.width = Length.Percent(100);
+            overlay.style.height = Length.Percent(100);
+            overlay.style.backgroundColor = new StyleColor(new Color(0.4f, 0, 0, 0.7f));
+            overlay.style.justifyContent = Justify.Center;
+            overlay.style.alignItems = Align.Center;
+
+            Label msg = new Label("MISSION FAILED");
+            msg.AddToClassList(textStyleClass);
+            msg.style.fontSize = 60;
+            msg.style.color = Color.red;
+            msg.style.unityFontStyleAndWeight = FontStyle.Bold;
+
+            Label subMsg = new Label("MECH CRITICAL FAILURE");
+            subMsg.style.fontSize = 20;
+            subMsg.style.color = Color.white;
+            subMsg.style.marginTop = 10;
+
+            overlay.Add(msg);
+            overlay.Add(subMsg);
+            runtimeHUD.rootVisualElement.Add(overlay);
+        }
+
+        yield return new WaitForSeconds(5.0f);
+
         GameManager.Instance.ReturnToLobby();
     }
 }

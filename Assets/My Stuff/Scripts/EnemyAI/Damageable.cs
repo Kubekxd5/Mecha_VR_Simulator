@@ -34,19 +34,4 @@ public class Damageable : MonoBehaviour
             targetEntity.TakeDamage(baseDamage * damageMultiplier);
         }
     }
-
-    private void OnParticleCollision(GameObject other)
-    {
-        if (targetEntity == null) return;
-
-        ParticleSystem part = other.GetComponent<ParticleSystem>();
-        if (part == null) return;
-
-        int numCollisionEvents = part.GetCollisionEvents(this.gameObject, collisionEvents);
-
-        for (int i = 0; i < numCollisionEvents; i++)
-        {
-            targetEntity.TakeDamage(defaultParticleDamage * damageMultiplier);
-        }
-    }
 }

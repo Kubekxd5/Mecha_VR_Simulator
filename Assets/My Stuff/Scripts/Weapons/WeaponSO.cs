@@ -42,7 +42,6 @@ public enum WeaponType
     Ballistic,
     Energy,
     Explosive,
-    Kinetic
 }
 
 public enum WeaponClass

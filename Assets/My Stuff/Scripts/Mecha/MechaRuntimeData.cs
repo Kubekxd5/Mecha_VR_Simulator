@@ -22,8 +22,13 @@ public class MechaRuntimeData : MonoBehaviour, IDamageableEntity
     public Vector2 MaterialOffsets => materialOffsets;
     public List<WeaponSO> EquippedWeapons => equippedWeapons;
     public List<WeaponBehaviour> ActiveWeaponScripts = new List<WeaponBehaviour>();
+	
+	private MaterialPropertyBlock _propBlock; 
+	private static readonly int BaseMapStId = Shader.PropertyToID("_BaseMap_ST"); 
+	private static readonly int BaseMapId = Shader.PropertyToID("_BaseMap");
 
     public event Action<float, float> OnHealthChanged;
+    private bool isDead;
 
     private void Awake()
     {
@@ -57,24 +62,34 @@ public class MechaRuntimeData : MonoBehaviour, IDamageableEntity
     }
 
     public void ApplyMaterial()
-    {
-        if (mechaData == null || mechaData.mechaVisuals.mechaSkins.Length <= selectedMaterialIndex)
-        {
-            Debug.LogWarning("Nie mo¿na zaaplikowaæ materia³u - brak danych lub nieprawid³owy indeks.");
-            return;
-        }
+	{
+		if (mechaData == null || mechaData.mechaVisuals.mechaSkins.Length <= selectedMaterialIndex)
+		{
+			Debug.LogWarning("The material could not be applied - out of index");
+			return;
+		}
 
-        Material materialToApply = mechaData.mechaVisuals.mechaSkins[selectedMaterialIndex];
-        var renderers = GetComponentsInChildren<Renderer>();
+		Material sharedMaterialToApply = mechaData.mechaVisuals.mechaSkins[selectedMaterialIndex];
+		
+		if (_propBlock == null)
+			_propBlock = new MaterialPropertyBlock();
 
-        foreach (var renderer in renderers)
-        {
-            if (renderer.tag == "WeaponSlot") continue;
-            Material instancedMaterial = new Material(materialToApply);
-            instancedMaterial.mainTextureOffset = materialOffsets;
-            renderer.material = instancedMaterial;
-        }
-    }
+		var renderers = GetComponentsInChildren<Renderer>();
+
+		foreach (var renderer in renderers)
+		{
+			if (renderer.CompareTag("WeaponSlot")) continue;
+
+			renderer.sharedMaterial = sharedMaterialToApply;
+
+			renderer.GetPropertyBlock(_propBlock);
+
+			_propBlock.SetVector(BaseMapStId, new Vector4(1, 1, materialOffsets.x, materialOffsets.y));
+
+			renderer.SetPropertyBlock(_propBlock);
+		}
+	}
+
     public void RegisterWeaponSlot(WeaponSlot slot)
     {
         if (!weaponSlots.ContainsKey(slot.slotIndex))
@@ -148,14 +163,24 @@ public class MechaRuntimeData : MonoBehaviour, IDamageableEntity
     private void Die()
     {
         currentHealth = 0;
-        Debug.Log($"{mechaData.mechName} zosta³ zniszczony!");
+        isDead = true;
+
+        Debug.Log($"{mechaData.mechName} was destroyed!");
 
         if (mechaData.mechaAudio.deathSound != null)
         {
             AudioSource.PlayClipAtPoint(mechaData.mechaAudio.deathSound, transform.position);
         }
 
-        Destroy(gameObject, 2f);
+        if (MissionManager.Instance != null)
+        {
+            MissionManager.Instance.ReportPlayerDeath();
+        }
+
+        foreach (var weapon in ActiveWeaponScripts)
+        {
+            if (weapon != null) weapon.enabled = false;
+        }
     }
 
     public MissionTargetCategory GetCategory()

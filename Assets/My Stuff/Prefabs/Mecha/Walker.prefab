@@ -1776,6 +1776,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8554870216052765196}
   - component: {fileID: 170309058497902127}
+  - component: {fileID: 2286431391280107777}
   m_Layer: 15
   m_Name: Torso
   m_TagString: Player
@@ -1824,6 +1825,21 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.02, y: 0.02, z: 0.015}
   m_Center: {x: 0, y: 0.002, z: 0}
+--- !u!114 &2286431391280107777
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6754592918720925483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2897aaf450ce00240b2ee86f3c045665, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Damageable
+  mainControllerObject: {fileID: 4268929005263771903}
+  damageMultiplier: 1
+  defaultParticleDamage: 1
 --- !u!1 &6834877859798935503
 GameObject:
   m_ObjectHideFlags: 0

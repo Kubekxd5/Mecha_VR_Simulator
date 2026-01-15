@@ -223,7 +223,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0, g: 0.6880622, b: 1, a: 1}
+      maxColor: {r: 0.43038154, g: 1, b: 0, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -288,7 +288,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 3
       scalar: 0.3
-      minScalar: 0.1
+      minScalar: 0.01
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -1366,8 +1366,8 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 1, g: 1, b: 1, a: 0}
-        key1: {r: 1, g: 1, b: 1, a: 1}
+        key0: {r: 0.77468354, g: 0.9433962, b: 0.013349922, a: 0}
+        key1: {r: 1, g: 0.81695867, b: 0, a: 1}
         key2: {r: 0, g: 0, b: 0, a: 1}
         key3: {r: 0, g: 0, b: 0, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
@@ -1386,12 +1386,12 @@ ParticleSystem:
         atime1: 13107
         atime2: 32768
         atime3: 65535
-        atime4: 0
+        atime4: 65535
         atime5: 0
         atime6: 0
         atime7: 0
         m_Mode: 0
-        m_ColorSpace: -1
+        m_ColorSpace: 0
         m_NumColorKeys: 2
         m_NumAlphaKeys: 4
       minGradient:
@@ -4852,7 +4852,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: fe3fbcea8e93fec468be670c547e0aa1, type: 2}
+  - {fileID: 2100000, guid: 20d08200599b1f74cb4ca6fd05318296, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5193,8 +5193,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.035
-      minScalar: 0.02
+      scalar: 0.002
+      minScalar: 0.001
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -9776,7 +9776,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9aaa13d175bcf1c4b8acc4d930ee06ee, type: 2}
+  - {fileID: 2100000, guid: d3f266e53af969d4b908b13624ee3b4c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -10123,8 +10123,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.6
-      minScalar: 0.3
+      scalar: 0.8
+      minScalar: 0.5
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -14722,7 +14722,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 736ed73a76ddaad41a597b45a8fea063, type: 2}
+  - {fileID: 2100000, guid: d3f266e53af969d4b908b13624ee3b4c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -14744,7 +14744,7 @@ ParticleSystemRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_RenderMode: 4
+  m_RenderMode: 3
   m_MeshDistribution: 0
   m_SortMode: 0
   m_MinParticleSize: 0
@@ -15199,7 +15199,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.6
+      scalar: 0.2
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -19764,7 +19764,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 49e8fa54d8b5d394d98a037964663ce5, type: 2}
+  - {fileID: 2100000, guid: d3f266e53af969d4b908b13624ee3b4c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -19990,22 +19990,42 @@ PrefabInstance:
       propertyPath: m_Materials.Array.size
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 199006209117777586, guid: cfe0c511fa8d1cf4abf31f2f48dfe4f9, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: d3f266e53af969d4b908b13624ee3b4c, type: 2}
     - target: {fileID: 199077614832586434, guid: cfe0c511fa8d1cf4abf31f2f48dfe4f9, type: 3}
       propertyPath: m_Materials.Array.size
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 199077614832586434, guid: cfe0c511fa8d1cf4abf31f2f48dfe4f9, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: d3f266e53af969d4b908b13624ee3b4c, type: 2}
     - target: {fileID: 199347173054627354, guid: cfe0c511fa8d1cf4abf31f2f48dfe4f9, type: 3}
       propertyPath: m_Materials.Array.size
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 199347173054627354, guid: cfe0c511fa8d1cf4abf31f2f48dfe4f9, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: d3f266e53af969d4b908b13624ee3b4c, type: 2}
     - target: {fileID: 199561907156230722, guid: cfe0c511fa8d1cf4abf31f2f48dfe4f9, type: 3}
       propertyPath: m_Materials.Array.size
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 199561907156230722, guid: cfe0c511fa8d1cf4abf31f2f48dfe4f9, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: d3f266e53af969d4b908b13624ee3b4c, type: 2}
     - target: {fileID: 199686329799724470, guid: cfe0c511fa8d1cf4abf31f2f48dfe4f9, type: 3}
       propertyPath: m_Materials.Array.size
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 199686329799724470, guid: cfe0c511fa8d1cf4abf31f2f48dfe4f9, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: d3f266e53af969d4b908b13624ee3b4c, type: 2}
     - target: {fileID: 199793271222299940, guid: cfe0c511fa8d1cf4abf31f2f48dfe4f9, type: 3}
       propertyPath: m_AllowRoll
       value: 0
@@ -20022,6 +20042,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.size
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 199793271222299940, guid: cfe0c511fa8d1cf4abf31f2f48dfe4f9, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: d3f266e53af969d4b908b13624ee3b4c, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

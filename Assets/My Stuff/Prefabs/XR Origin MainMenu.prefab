@@ -382,6 +382,7 @@ GameObject:
   - component: {fileID: 330879644458915531}
   - component: {fileID: 1022722361763490933}
   - component: {fileID: 1959233728882062629}
+  - component: {fileID: 5654101523807106700}
   m_Layer: 6
   m_Name: XR Origin MainMenu
   m_TagString: Player
@@ -518,6 +519,34 @@ MonoBehaviour:
   m_AimAssistRequiredSpeed: 0.25
   m_AimAssistPercent: 0.8
   m_AimAssistMaxSpeedPercent: 10
+--- !u!114 &5654101523807106700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5277191434584672617}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 046c3b1214ddd3642ba701a66c4996ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::XRJump
+  jumpAction:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Jump
+      m_Type: 1
+      m_ExpectedControlType: Button
+      m_Id: 4315b893-2b5d-4a5a-a320-53d71b9e31cf
+      m_Processors: 
+      m_Interactions: Press
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: -3875704489234743591, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  jumpSpeed: 10
+  gravity: -20
+  maxJumps: 3
+  hangTime: 2
 --- !u!1 &5371743466663077668
 GameObject:
   m_ObjectHideFlags: 0

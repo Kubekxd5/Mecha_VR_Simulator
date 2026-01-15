@@ -101,7 +101,7 @@ MeshRenderer:
   m_Materials:
   - {fileID: 2100000, guid: 8bdaa29e51295de469538d4d622b9e9d, type: 2}
   - {fileID: 2100000, guid: 34bcdf159703a2c459be9d859602e352, type: 2}
-  - {fileID: 2100000, guid: 3daebd4d9f9da0c42b55a752aa36cc97, type: 2}
+  - {fileID: 2100000, guid: 87858f841225a034e88a69165fe0934d, type: 2}
   - {fileID: -876546973899608171, guid: b64dee04c2435a048aa7bc3f5b1e2442, type: 3}
   - {fileID: -4973734387028869240, guid: b64dee04c2435a048aa7bc3f5b1e2442, type: 3}
   m_StaticBatchInfo:
@@ -139,6 +139,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponData: {fileID: 0}
+  isLeft: 0
   firePoint: {fileID: 5215282237603553457}
 --- !u!1 &9204008610457191845
 GameObject:
@@ -209,7 +210,7 @@ MeshRenderer:
   m_Materials:
   - {fileID: 2100000, guid: 2294e56adacfee44596ce7e145f47fdf, type: 2}
   - {fileID: 2100000, guid: 2294e56adacfee44596ce7e145f47fdf, type: 2}
-  - {fileID: 2100000, guid: 3daebd4d9f9da0c42b55a752aa36cc97, type: 2}
+  - {fileID: 2100000, guid: 87858f841225a034e88a69165fe0934d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
