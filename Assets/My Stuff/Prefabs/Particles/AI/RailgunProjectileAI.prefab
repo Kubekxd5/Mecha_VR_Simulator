@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8747123717079175699}
   - component: {fileID: 467547992913593566}
   - component: {fileID: 3732164329930709657}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Shockwave
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4919,7 +4919,7 @@ GameObject:
   - component: {fileID: 611163114329382789}
   - component: {fileID: 6391598384793159424}
   - component: {fileID: 4962283696801200303}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: RailgunProjectileAI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9980,6 +9980,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 376b91912bf94ca44b891faf6e387a1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileController
+  targetLayers:
+    serializedVersion: 2
+    m_Bits: 1081409
 --- !u!1 &5964798797600914670
 GameObject:
   m_ObjectHideFlags: 0
@@ -9991,7 +9994,7 @@ GameObject:
   - component: {fileID: 5255643016204926549}
   - component: {fileID: 7462331285133173633}
   - component: {fileID: 4281714503268630751}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Sparks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14915,7 +14918,7 @@ GameObject:
   - component: {fileID: 3165954285969758506}
   - component: {fileID: 4930044087353610846}
   - component: {fileID: 331597135427761328}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Smoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19820,7 +19823,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1232552918196878, guid: cfe0c511fa8d1cf4abf31f2f48dfe4f9, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1245903589182048, guid: cfe0c511fa8d1cf4abf31f2f48dfe4f9, type: 3}
       propertyPath: m_Layer
@@ -19840,7 +19843,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1344461201369764, guid: cfe0c511fa8d1cf4abf31f2f48dfe4f9, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1344461201369764, guid: cfe0c511fa8d1cf4abf31f2f48dfe4f9, type: 3}
       propertyPath: m_IsActive
@@ -20093,7 +20096,7 @@ PrefabInstance:
     - target: {fileID: 199077614832586434, guid: cfe0c511fa8d1cf4abf31f2f48dfe4f9, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: e46f1d3c5e691954896bb3e1dad33718, type: 2}
+      objectReference: {fileID: 2100000, guid: dde2a6e1c48b2174db61905f718ee346, type: 2}
     - target: {fileID: 199347173054627354, guid: cfe0c511fa8d1cf4abf31f2f48dfe4f9, type: 3}
       propertyPath: m_Materials.Array.size
       value: 1
@@ -20101,7 +20104,7 @@ PrefabInstance:
     - target: {fileID: 199347173054627354, guid: cfe0c511fa8d1cf4abf31f2f48dfe4f9, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: e46f1d3c5e691954896bb3e1dad33718, type: 2}
+      objectReference: {fileID: 2100000, guid: dde2a6e1c48b2174db61905f718ee346, type: 2}
     - target: {fileID: 199561907156230722, guid: cfe0c511fa8d1cf4abf31f2f48dfe4f9, type: 3}
       propertyPath: m_Materials.Array.size
       value: 1

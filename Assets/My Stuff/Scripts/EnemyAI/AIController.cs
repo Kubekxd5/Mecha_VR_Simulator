@@ -46,26 +46,91 @@ public class AIController : MonoBehaviour
     private float avoidanceTimer = 0f;
 
     private bool playerDetected;
+    private bool positionAdjusted = false;
+    private float adjustmentTimer = 0f;
     private Collider[] detectedColliders = new Collider[20];
     private Collider[] detectedPlayers = new Collider[2];
-
     void Start()
     {
         footSolver = GetComponent<IKFootSolver>();
         playerDetected = false;
-    }
 
+    }
     void Update()
     {
         if (footSolver == null) return;
 
+        // 1. Initial IK Setup
+        if (!positionAdjusted)
+        {
+            AdjustInitialPosition();
+            return;
+        }
+
+        // 2. Vision Logic
         LookForPlayer();
 
-        if (playerTarget == null) return;
+        // 3. Head Rotation (Face player or search)
+        if (playerTarget != null)
+        {
+            FacePlayer();
+        }
+        else
+        {
+            IdleHeadSearch();
+        }
 
-        FacePlayer();
+        // 4. Movement and Combat Logic
+        if (playerTarget == null)
+        {
+            leftThrottle = Mathf.Lerp(leftThrottle, 0, Time.deltaTime * throttleSpeed);
+            rightThrottle = Mathf.Lerp(rightThrottle, 0, Time.deltaTime * throttleSpeed);
+            footSolver.LeftThrottle = leftThrottle;
+            footSolver.RightThrottle = rightThrottle;
+            return;
+        }
+
         MoveTowardsPlayer();
         HandleShooting();
+    }
+
+    private void AdjustInitialPosition()
+    {
+        adjustmentTimer += Time.deltaTime;
+
+        if (adjustmentTimer < 2.0f)
+        {
+            leftThrottle = 1f;
+            rightThrottle = 1f;
+
+            ApplyMovement();
+
+            footSolver.LeftThrottle = leftThrottle;
+            footSolver.RightThrottle = rightThrottle;
+            footSolver.MoveSpeed = moveSpeed;
+        }
+        else
+        {
+            leftThrottle = 0f;
+            rightThrottle = 0f;
+            positionAdjusted = true;
+        }
+    }
+
+    private void IdleHeadSearch()
+    {
+        if (headTransform == null) return;
+
+        float speed = headRotation.rotationSpeed * 0.5f;
+        float searchYaw = Mathf.Sin(Time.time * speed) * ((headRotation.leftLimit + headRotation.rightLimit) / 2f);
+
+        Quaternion searchRotation = Quaternion.Euler(0, searchYaw, 0);
+
+        headTransform.localRotation = Quaternion.Slerp(
+            headTransform.localRotation,
+            searchRotation,
+            Time.deltaTime * headRotation.rotationSpeed
+        );
     }
 
     private void LookForPlayer()

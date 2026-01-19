@@ -28,5 +28,5 @@ MonoBehaviour:
   projectileType: 2
   fireSounds:
   - {fileID: 8300000, guid: 16fba6d30ed741d4a9fdd6e79ee2f3ac, type: 3}
-  muzzleFlashVFX: {fileID: 8596137704382848992, guid: 6533ef17a3883454e84802ec2c9769fc, type: 3}
+  muzzleFlashVFX: {fileID: 0}
   impactVFX: {fileID: 0}

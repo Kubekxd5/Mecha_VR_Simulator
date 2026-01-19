@@ -17,10 +17,10 @@ MonoBehaviour:
   weaponType: 0
   weaponClass: 0
   weaponPrefab: {fileID: 5281640335828875652, guid: 03964dfffc2de9e4d98de3bd345e37bb, type: 3}
-  damage: 6
+  damage: 10
   fireRate: 1
   range: 100
-  projectileSpeed: 80
+  projectileSpeed: 160
   energyCost: 5
   overheatThreshold: 10
   cooldownTime: 2
@@ -28,5 +28,5 @@ MonoBehaviour:
   projectileType: 1
   fireSounds:
   - {fileID: 8300000, guid: 16fba6d30ed741d4a9fdd6e79ee2f3ac, type: 3}
-  muzzleFlashVFX: {fileID: 8596137704382848992, guid: 6533ef17a3883454e84802ec2c9769fc, type: 3}
+  muzzleFlashVFX: {fileID: 0}
   impactVFX: {fileID: 0}

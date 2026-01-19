@@ -9979,6 +9979,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 376b91912bf94ca44b891faf6e387a1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileController
+  targetLayers:
+    serializedVersion: 2
+    m_Bits: 1049089
 --- !u!1 &5965350816205931017
 GameObject:
   m_ObjectHideFlags: 0

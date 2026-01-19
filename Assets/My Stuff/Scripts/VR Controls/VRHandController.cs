@@ -101,9 +101,17 @@ public class VRHandController : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         VRInteractable interactable = other.GetComponent<VRInteractable>();
-        if(interactable != null && nearbyInteractables.Contains(interactable))
+
+        if (interactable != null && nearbyInteractables.Contains(interactable))
         {
+            interactable.EnableGhost(false);
+
             nearbyInteractables.Remove(interactable);
+
+            if (interactable == closestInteractable)
+            {
+                closestInteractable = null;
+            }
         }
     }
 
@@ -111,19 +119,20 @@ public class VRHandController : MonoBehaviour
     {
         nearbyInteractables.RemoveAll(item => item == null || !item.gameObject.activeInHierarchy);
 
-        foreach (var i in nearbyInteractables) i.EnableGhost(false);
-
-        closestInteractable = nearbyInteractables
+        VRInteractable newClosest = nearbyInteractables
             .Where(i => i.isGrabbable && !i.isHeld)
             .OrderBy(i => Vector3.Distance(transform.position, i.transform.position))
             .FirstOrDefault();
 
-
-        if (closestInteractable != null)
+        if (newClosest != closestInteractable)
         {
-            closestInteractable.EnableGhost(true);
+            if (closestInteractable != null) closestInteractable.EnableGhost(false);
+
+            closestInteractable = newClosest;
+            if (closestInteractable != null) closestInteractable.EnableGhost(true);
         }
     }
+
     private void PickupNearbyObject()
     {
         if (closestInteractable == null) return;
